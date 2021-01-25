@@ -1,0 +1,47 @@
+.fonts {
+	font-family: 'Playfair Display';
+	font-style: normal;
+	font-weight: normal;
+}
+.home {
+	&__page {
+		background: linear-gradient(
+			0deg,
+			rgba(219, 208, 200, 1) 70%,
+			rgba(0, 119, 142, 0.5032387955182073) 80%,
+			rgba(219, 208, 200, 1) 100%
+		);
+	}
+	&__main {
+		padding: 40px 33px;
+
+		h4 {
+			@extend .fonts;
+
+			margin-top: 2rem;
+			margin-left: 5rem;
+			font-size: 30px;
+			line-height: 40px;
+			color: #ffffff;
+		}
+
+		&-top {
+			display: flex;
+
+			img {
+				width: 555.7px;
+				height: 415.44px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.home {
+		&__main {
+			h4 {
+				margin: 1rem 0;
+			}
+		}
+	}
+}

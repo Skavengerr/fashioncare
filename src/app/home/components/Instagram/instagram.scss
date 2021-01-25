@@ -1,0 +1,45 @@
+.inst {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -1.6rem 115px -2.3rem;
+	&__el {
+		width: 16.6666%;
+		text-align: center;
+		margin-bottom: 1rem;
+		img {
+			width: 200px;
+
+			box-shadow: 0 0 2px rgba(#000, 25%);
+			cursor: pointer;
+			transition: box-shadow, transform 0.2s linear;
+
+			&:hover {
+				box-shadow: 0 0 5px rgba(#000, 25%);
+				transform: scale(1.03);
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.inst {
+		flex-wrap: wrap;
+		&__el {
+			width: 25%;
+			img {
+				width: 100%;
+			}
+		}
+	}
+}
+@media screen and (max-width: 700px) {
+	.inst {
+		flex-wrap: wrap;
+		&__el {
+			width: 50%;
+			img {
+				width: 100%;
+			}
+		}
+	}
+}

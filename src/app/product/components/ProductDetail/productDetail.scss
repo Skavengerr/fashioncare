@@ -1,0 +1,29 @@
+.detail {
+	&__appbar {
+		background: #fff !important;
+		color: #000 !important;
+		border-bottom: 6px solid #23d0ff !important;
+		box-shadow: none !important;
+	}
+
+	&__selected {
+		background-color: #15d0ff !important;
+		color: #fff !important;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.detail {
+		&__selected {
+			width: 75px;
+		}
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.detail {
+		&__selected {
+			width: 75px;
+		}
+	}
+}

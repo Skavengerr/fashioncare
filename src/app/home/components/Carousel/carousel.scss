@@ -1,0 +1,31 @@
+.carousel {
+	font-family: sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	margin-left: 33px;
+
+	&-item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 185px;
+		width: 100%;
+		background-color: #979797;
+		color: #fff;
+		margin: 15px;
+		font-size: 4em;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.carousel {
+		margin: 0;
+	}
+}
+
+.rec-carousel-item:focus {
+	outline: none;
+	box-shadow: inset 0 0 1px 0px violet;
+}

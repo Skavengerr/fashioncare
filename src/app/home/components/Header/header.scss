@@ -1,0 +1,156 @@
+.fonts {
+	font-family: 'Playfair Display';
+	font-style: normal;
+	font-weight: normal;
+}
+.header {
+	&__static {
+		display: flex;
+		justify-content: center;
+
+		width: calc(100% - 66px);
+		height: 56.88px;
+		background: #d6baa4;
+		text-align: center;
+		margin: 0 33px;
+		&-el {
+			@extend .fonts;
+
+			width: 25%;
+			align-self: center;
+			margin: 10px 0;
+			border-right: 1px solid #fff;
+
+			font-size: 20px;
+			line-height: 27px;
+			color: #ffffff;
+			cursor: pointer;
+
+			&:last-child {
+				border: none;
+			}
+		}
+	}
+	&__nav {
+		height: 58px;
+		&-image {
+			height: 100%;
+		}
+	}
+	&-b {
+		margin: auto;
+		min-width: 96px;
+		min-height: 70px;
+		border: none;
+		background: none;
+		font-family: 'Playfair Display', serif;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 30px;
+		line-height: 40px;
+		color: #fff;
+		margin: 0 1rem;
+		cursor: pointer;
+		outline: none;
+		&-active {
+			@extend .header-b;
+			background: #fff !important;
+			color: #000000 !important;
+		}
+	}
+	&__menu {
+		padding: 0 2.4rem;
+		display: flex;
+		justify-content: space-between;
+		//height: 120px;
+
+		&-buttons {
+			align-self: flex-end;
+			width: 33.3%;
+			text-align: center;
+		}
+
+		&-actions {
+			width: 33.3%;
+			display: flex;
+			color: #fff;
+			justify-content: flex-end;
+			align-items: center;
+			font-family: 'Montserrat';
+			font-style: normal;
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 22px;
+			&-icon {
+				color: #fff !important;
+				width: 80px !important;
+			}
+		}
+
+		&-image {
+			width: 33.3%;
+		}
+	}
+	&__top {
+		height: 49.05px;
+		display: flex;
+		justify-content: space-between;
+
+		background: #8e5937;
+		color: #fff;
+		padding: 0 2.4rem;
+
+		&-social {
+			display: flex;
+			align-items: center;
+			width: 25%;
+		}
+		&-main {
+			display: flex;
+			align-items: center;
+			width: 50%;
+		}
+		&-timer {
+			display: flex;
+			align-items: center;
+			width: 25%;
+		}
+
+		&-title {
+			margin: 0 0.8rem;
+			font-weight: 900;
+			font-size: 19px;
+		}
+
+		&-text {
+			font-weight: 200;
+			font-size: 16px;
+		}
+
+		&-block {
+			display: flex;
+			align-items: center;
+			margin: auto;
+		}
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.header {
+		&-b {
+			font-size: 20px;
+			margin: 0;
+		}
+		&__menu {
+			padding: 0.5rem;
+			flex-direction: column-reverse;
+			&-actions {
+				width: 100%;
+				justify-content: center;
+			}
+			&-buttons {
+				width: 100%;
+			}
+		}
+	}
+}

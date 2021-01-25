@@ -1,0 +1,41 @@
+.productc {
+	display: flex;
+	&__carousel {
+		padding: 1rem;
+		margin-top: 60px;
+		display: flex;
+
+		&-wrap {
+			width: 30rem;
+			display: flex;
+			padding-right: 1rem;
+		}
+	}
+	&__detail {
+		background: #ffffff;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.BrainhubCarouselItem {
+	max-width: 0;
+	min-width: 0;
+	width: 22rem;
+}
+
+@media screen and (max-width: 1200px) {
+	.productc {
+		&__carousel {
+			flex-wrap: wrap;
+			&-wrap {
+				flex-wrap: wrap;
+				margin: auto;
+				width: 20rem;
+			}
+		}
+	}
+	.BrainhubCarousel__container {
+		margin-bottom: 2rem;
+	}
+}
