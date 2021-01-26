@@ -5,6 +5,7 @@ import {Router, Route, Switch} from 'react-router-dom';
 import Home from './home';
 import Product from './product';
 import Footer from './home/components/Footer';
+import CookieBanner from './OtherComponents/CookieBanner';
 
 const App = () => {
 	return (
@@ -16,6 +17,7 @@ const App = () => {
 				</Switch>
 			</Router>
 			<Footer />
+			<CookieBanner />
 		</>
 	);
 };

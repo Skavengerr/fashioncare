@@ -81,9 +81,19 @@
 			font-weight: 500;
 			font-size: 18px;
 			line-height: 22px;
+
 			&-icon {
+				display: flex;
 				color: #fff !important;
 				width: 80px !important;
+				padding: 0 !important;
+			}
+
+			button {
+				outline: none;
+				&:hover {
+					background: none;
+				}
 			}
 		}
 
@@ -114,12 +124,14 @@
 			display: flex;
 			align-items: center;
 			width: 25%;
+			justify-content: flex-end;
 		}
 
 		&-title {
+			font-family: 'serif';
 			margin: 0 0.8rem;
 			font-weight: 900;
-			font-size: 19px;
+			font-size: 21px;
 		}
 
 		&-text {

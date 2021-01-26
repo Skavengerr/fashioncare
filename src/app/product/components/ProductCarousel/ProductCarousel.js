@@ -2,8 +2,8 @@ import React from 'react';
 import Carousel from '@brainhubeu/react-carousel';
 import Dots from './Dots';
 import ProductDetail from '../ProductDetail';
-import '@brainhubeu/react-carousel/lib/style.css';
 
+import '@brainhubeu/react-carousel/lib/style.css';
 import './productCarousel.scss';
 
 class ProductCarousel extends React.Component {
@@ -12,14 +12,14 @@ class ProductCarousel extends React.Component {
 		this.state = {
 			value: 0,
 			slides: [
-				<img src="/icons/product/image.jpg" />,
-				<img src="/icons/product/image.jpg" />,
-				<img src="/icons/product/image.jpg" />
+				<img alt="" src="/icons/product/image.jpg" />,
+				<img alt="" src="/icons/product/image.jpg" />,
+				<img alt="" src="/icons/product/image.jpg" />
 			],
 			thumbnails: [
-				<img src="/icons/product/image.jpg" />,
-				<img src="/icons/product/image.jpg" />,
-				<img src="/icons/product/image.jpg" />
+				<img alt="" src="/icons/product/image.jpg" />,
+				<img alt="" src="/icons/product/image.jpg" />,
+				<img alt="" src="/icons/product/image.jpg" />
 			]
 		};
 		this.onchange = this.onchange.bind(this);
@@ -43,7 +43,6 @@ class ProductCarousel extends React.Component {
 						thumbnails={this.state.thumbnails}
 						value={this.state.value}
 						onChange={this.onchange}
-						number={this.state.slides.length}
 					/>
 				</div>
 				<div className="productc__detail">

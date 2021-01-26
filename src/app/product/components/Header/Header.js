@@ -64,14 +64,11 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import ShoppingBasketOutlinedIcon from '@material-ui/icons/ShoppingBasketOutlined';
 
 import './header.scss';
+import {Hidden} from '@material-ui/core';
 
 const Header = () => {
 	return (
 		<div className="navP">
-			<Link to="/" className="navP-link">
-				<img alt="" src="/icons/header/logo.svg" />
-			</Link>
-
 			<input type="checkbox" id="navP-check" />
 			<div className="navP-btn">
 				<label htmlFor="navP-check">
@@ -80,7 +77,7 @@ const Header = () => {
 					<span></span>
 				</label>
 			</div>
-			<div className="header__menu-actions ml-auto">
+			<div className="header__menu-actions mt ml-auto">
 				<div>USA</div>
 				<div className="mx-12">ENG</div>
 				<div>CHF</div>

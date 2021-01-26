@@ -29,9 +29,14 @@ const Instagram = () => {
 			<p className="eco-text">Instagram</p>
 			<div className="inst">
 				{media.map(el => (
-					<div key={el.thumbnail_src} className="inst__el">
+					<a
+						target="_blank"
+						href="https://www.instagram.com/fashioncare.ch/"
+						key={el.thumbnail_src}
+						className="inst__el"
+					>
 						<img src={el.thumbnail_src} alt={el.thumbnail_src} />
-					</div>
+					</a>
 				))}
 			</div>
 		</div>

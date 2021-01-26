@@ -1,12 +1,49 @@
 import React from 'react';
 
+import Timer from './Timer';
+
 export const Social = () => (
 	<div className="header__top-social">
-		<img className="mr-6" alt="" src="/icons/header/fb.svg" />
-		<img className="mr-6" alt="" src="/icons/header/ig.svg" />
-		<img className="mr-6" alt="" src="/icons/header/yt.svg" />
-		<img className="mr-6" alt="" src="/icons/header/ld.svg" />
-		<img className="mr-6" alt="" src="/icons/header/pr.svg" />
+		<a
+			className="mr-6"
+			rel="noreferrer"
+			target="_blank"
+			href="https://www.facebook.com/Fashioncarech-629962404296813"
+		>
+			<img alt="" src="/icons/header/fb.svg" />
+		</a>
+		<a
+			className="mr-6"
+			rel="noreferrer"
+			target="_blank"
+			href="https://www.instagram.com/fashioncare.ch/"
+		>
+			<img alt="" src="/icons/header/ig.svg" />
+		</a>
+		<a
+			className="mr-6"
+			rel="noreferrer"
+			target="_blank"
+			href="https://www.youtube.com/channel/UCWdsBwRgAh6CXheiMOajZ8A/featured"
+		>
+			<img alt="" src="/icons/header/yt.svg" />
+		</a>
+		<a
+			className="mr-6"
+			rel="noreferrer"
+			target="_blank"
+			href="https://www.linkedin.com/company/fashioncareshop/?viewAsMember=true"
+		>
+			<img alt="" src="/icons/header/ld.svg" />
+		</a>
+		<a
+			className="mr-6"
+			rel="noreferrer"
+			target="_blank"
+			href="https://www.pinterest.com/fashioncare_ch/"
+		>
+			<img alt="" src="/icons/header/pr.svg" />
+		</a>
 	</div>
 );
 
@@ -17,12 +54,6 @@ const Title = () => (
 			<p className="header__top-title">Free home delivery</p>
 			<p className="header__top-text">for orders from 500CHF (Switzerland)</p>
 		</div>
-	</div>
-);
-
-const Timer = () => (
-	<div className="header__top-timer">
-		<p className="header__top-title ml-auto">1 hour 12 minutes 00 seconds</p>
 	</div>
 );
 

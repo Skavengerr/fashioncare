@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Hidden} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ShoppingBasketOutlinedIcon from '@material-ui/icons/ShoppingBasketOutlined';
+import PublicIcon from '@material-ui/icons/Public';
 
-const Menu = () => {
+const Menu = ({region}) => {
 	const [active, setActive] = useState('kids');
 
 	return (
@@ -37,9 +38,17 @@ const Menu = () => {
 			</div>
 
 			<div className="header__menu-actions">
-				<div>USA</div>
-				<div className="mx-12">ENG</div>
-				<div>CHF</div>
+				<IconButton size="medium" className="header__menu-actions-icon ml-12">
+					<PublicIcon />
+					<p>{region}</p>
+				</IconButton>
+				<IconButton size="medium" className="header__menu-actions-icon ml-12">
+					<div className="mx-12">ENG</div>
+				</IconButton>
+				<IconButton size="medium" className="header__menu-actions-icon ml-12">
+					<div className="mx-12">CHF</div>
+				</IconButton>
+
 				<IconButton size="medium" className="header__menu-actions-icon ml-12">
 					<AccountCircleOutlinedIcon />
 				</IconButton>
