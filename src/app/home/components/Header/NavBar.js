@@ -49,11 +49,36 @@ const NavBar = () => {
 			</div>
 			<Hidden mdDown>
 				<div className="header__static">
-					<div className="header__static-el">Delivery</div>
-					<div className="header__static-el">Submit and return</div>
-					<div className="header__static-el">Packaging</div>
-					<div className="header__static-el">Contact us</div>
-					<div className="header__static-el">FAQ</div>
+					<a
+						href="https://fashioncare.ch/Home/Delivery"
+						className="header__static-el"
+					>
+						Delivery
+					</a>
+					<a
+						href="https://fashioncare.ch/Home/SubmitReturn"
+						className="header__static-el"
+					>
+						Submit and return
+					</a>
+					<a
+						href="https://fashioncare.ch/Home/Packaging"
+						className="header__static-el"
+					>
+						Packaging
+					</a>
+					<a
+						href="https://fashioncare.ch/Home/ContactUs"
+						className="header__static-el"
+					>
+						Contact us
+					</a>
+					<a
+						href="https://fashioncare.ch/Home/FAQ"
+						className="header__static-el"
+					>
+						FAQ
+					</a>
 				</div>
 			</Hidden>
 		</>
