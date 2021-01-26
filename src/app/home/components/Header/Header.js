@@ -8,7 +8,7 @@ import Menu from './Menu';
 import './header.scss';
 
 const Header = props => {
-	const {region} = props;
+	const {region, filterByCategory} = props;
 	return (
 		<div className="header">
 			<Hidden lgUp>
@@ -18,7 +18,7 @@ const Header = props => {
 				<TopHeader />
 			</Hidden>
 
-			<Menu region={region} />
+			<Menu region={region} filterByCategory={filterByCategory} />
 			<Hidden mdDown>
 				<NavBar />
 			</Hidden>

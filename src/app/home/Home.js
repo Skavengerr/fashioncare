@@ -15,12 +15,12 @@ import './home.scss';
 
 const Home = () => {
 	const homeInfo = useHome();
-	const {region, products} = homeInfo;
+	const {region, products, filterByCategory} = homeInfo;
 
 	return (
 		<div className="home">
 			<div className="home__page">
-				<Header region={region} />
+				<Header region={region} filterByCategory={filterByCategory} />
 				<div className="home__main">
 					<div className="home__main-top">
 						<Hidden mdDown>

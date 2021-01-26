@@ -6,7 +6,7 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import ShoppingBasketOutlinedIcon from '@material-ui/icons/ShoppingBasketOutlined';
 import PublicIcon from '@material-ui/icons/Public';
 
-const Menu = ({region}) => {
+const Menu = ({region, filterByCategory}) => {
 	const [active, setActive] = useState('kids');
 
 	return (
@@ -19,19 +19,28 @@ const Menu = ({region}) => {
 
 			<div className="header__menu-buttons">
 				<button
-					onClick={() => setActive('women')}
+					onClick={() => {
+						filterByCategory(2);
+						setActive('women');
+					}}
 					className={active === 'women' ? 'header-b-active' : 'header-b'}
 				>
 					Women
 				</button>
 				<button
-					onClick={() => setActive('men')}
+					onClick={() => {
+						filterByCategory(1);
+						setActive('men');
+					}}
 					className={active === 'men' ? 'header-b-active' : 'header-b'}
 				>
 					Men
 				</button>
 				<button
-					onClick={() => setActive('kids')}
+					onClick={() => {
+						filterByCategory(3);
+						setActive('kids');
+					}}
 					className={active === 'kids' ? 'header-b-active' : 'header-b'}
 				>
 					Kids

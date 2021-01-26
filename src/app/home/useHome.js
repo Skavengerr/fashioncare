@@ -5,6 +5,10 @@ import axios from 'axios';
 export const useHome = () => {
 	const [region, setRegion] = useState('EU');
 	const [winterProducts, setWinterProducts] = useState([]);
+	console.log(
+		'🚀 ~ file: useHome.js ~ line 8 ~ useHome ~ winterProducts',
+		winterProducts
+	);
 	const [seasons, setSeasons] = useState([]);
 
 	const {state, dispatch} = useContext(ContextApp); // eslint-disable-line
@@ -22,8 +26,13 @@ export const useHome = () => {
 		setWinterProducts(data.data.Products.filter(el => el.SeasonId === 1));
 	};
 
-	const filterByCategory = () => {};
-
+	const filterByCategory = async category => {
+		console.log('🚀 ~ file: useHome.js ~ line 26 ~ useHome ~ category', category);
+		const url = '/API/ProductList';
+		const data = await axios(url);
+		console.log('🚀 ~ file: useHome.js ~ line 33 ~ useHome ~ data', data);
+		setWinterProducts(data.data.Products.filter(el => el.CategoryId === category));
+	};
 	useEffect(() => {
 		getProduct();
 		getProductList();
@@ -37,5 +46,5 @@ export const useHome = () => {
 		else setRegion('EU');
 	};
 
-	return {region, products: {winterProducts, seasons}};
+	return {region, products: {winterProducts, seasons}, filterByCategory};
 };
