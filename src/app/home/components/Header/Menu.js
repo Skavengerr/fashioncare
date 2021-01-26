@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import {Hidden} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
@@ -11,9 +12,9 @@ const Menu = ({region}) => {
 	return (
 		<div className="header__menu">
 			<Hidden mdDown>
-				<div className="header__menu-image">
+				<Link to="/" className="header__menu-image">
 					<img alt="" src="/icons/header/header.svg" />
-				</div>
+				</Link>
 			</Hidden>
 
 			<div className="header__menu-buttons">
@@ -49,12 +50,22 @@ const Menu = ({region}) => {
 					<div className="mx-12">CHF</div>
 				</IconButton>
 
-				<IconButton size="medium" className="header__menu-actions-icon ml-12">
-					<AccountCircleOutlinedIcon />
-				</IconButton>
-				<IconButton size="medium" className="header__menu-actions-icon">
-					<ShoppingBasketOutlinedIcon />
-				</IconButton>
+				<a
+					href="https://fashioncare.ch/Account/Login"
+					target="_blank"
+					rel="noreferrer"
+					className="header__menu-actions-icon"
+				>
+					<AccountCircleOutlinedIcon classes={{root: 'm-auto'}} />
+				</a>
+				<a
+					href="https://fashioncare.ch/Account/Login"
+					target="_blank"
+					rel="noreferrer"
+					className="header__menu-actions-icon"
+				>
+					<ShoppingBasketOutlinedIcon classes={{root: 'm-auto'}} />
+				</a>
 			</div>
 		</div>
 	);

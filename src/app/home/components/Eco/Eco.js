@@ -7,23 +7,19 @@ const Eco = () => {
 		<div className="eco">
 			<div className="eco-text">
 				<p>Eco</p>
-				<div className="eco-item"></div>
+				<img alt="" src="/icons/home/eco_1.svg"></img>
 			</div>
 			<div className="eco-text">
 				<p>Eco</p>
-				<div className="eco-item"></div>
+				<img alt="" src="/icons/home/eco_2.svg"></img>
 			</div>
 			<div className="eco-text">
 				<p>Eco</p>
-				<div className="eco-item"></div>
+				<img alt="" src="/icons/home/eco_3.svg"></img>
 			</div>
 			<div className="eco-text">
 				<p>Eco</p>
-				<div className="eco-item"></div>
-			</div>
-			<div className="eco-text">
-				<p>Eco</p>
-				<div className="eco-item"></div>
+				<img alt="" src="/icons/home/eco_4.svg"></img>
 			</div>
 		</div>
 	);

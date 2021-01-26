@@ -1,3 +1,4 @@
+import React from 'react';
 import {Divider, Hidden} from '@material-ui/core';
 
 import YouTubeVideos from './components/YouTubeVideos';
@@ -14,7 +15,8 @@ import './home.scss';
 
 const Home = () => {
 	const homeInfo = useHome();
-	const {region} = homeInfo;
+	const {region, products} = homeInfo;
+
 	return (
 		<div className="home">
 			<div className="home__page">
@@ -27,9 +29,9 @@ const Home = () => {
 						<Carousel />
 					</div>
 					<Info />
-					<Category />
+					<Category products={products} />
 					<Divider classes={{root: 'main__category-divider'}} />
-					<Popular />
+					<Popular products={products} />
 					<Eco />
 					<Divider classes={{root: 'main__eco-divider'}} />
 					<YouTubeVideos />

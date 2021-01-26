@@ -1,5 +1,5 @@
 import React from 'react';
-import ElasticCarousel from 'react-elastic-carousel';
+import ElasticCarousel, {consts} from 'react-elastic-carousel';
 
 import './category.scss';
 
@@ -11,11 +11,20 @@ const breakPoints = [
 ];
 
 const items = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'];
+const myArrow = ({type, onClick, isEdge}) => {
+	const pointer = type === consts.PREV ? '❮' : '❯';
+	return (
+		<button onClick={onClick} disabled={isEdge} className="category-button">
+			{pointer}
+		</button>
+	);
+};
 
 function Category() {
 	return (
 		<div className="category">
 			<ElasticCarousel
+				renderArrow={myArrow}
 				breakPoints={breakPoints}
 				enableAutoPlay
 				autoPlaySpeed={7500}

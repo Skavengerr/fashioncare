@@ -1,13 +1,14 @@
 {
 	"name": "fashioncare",
 	"version": "1.1.0",
+	"proxy": "https://fashioncare.ch",
 	"private": true,
 	"dependencies": {
 		"@brainhubeu/react-carousel": "^1.19.26",
+		"@hookstate/core": "^3.0.3",
 		"@material-ui/core": "^4.11.2",
 		"@material-ui/icons": "^4.11.2",
 		"axios": "^0.21.1",
-		"fetch-with-proxy": "^3.0.1",
 		"node-sass": "4.14.1",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",

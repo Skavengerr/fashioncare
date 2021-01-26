@@ -14,6 +14,11 @@
 	margin-top: 90px;
 	padding: 2rem 0;
 
+	img {
+		width: 125px;
+		margin: 0 3rem;
+	}
+
 	&-divider {
 		background: #fff !important;
 	}
@@ -26,6 +31,7 @@
 		font-size: 30px;
 		line-height: 40px;
 		color: #fff;
+		align-items: center;
 	}
 
 	&-item {

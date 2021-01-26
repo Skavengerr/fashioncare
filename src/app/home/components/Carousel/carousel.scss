@@ -17,6 +17,31 @@
 		margin: 15px;
 		font-size: 4em;
 	}
+
+	&-button {
+		box-sizing: border-box;
+		-webkit-transition: all 0.3s ease;
+		transition: all 0.3s ease;
+		font-size: 2.5rem;
+		background-color: #d6baa4;
+		color: #fff;
+		border-radius: 50%;
+		border: none;
+		padding: 0;
+		width: 60px;
+		height: 60px;
+		min-width: 60px;
+		line-height: 50px;
+		-webkit-align-self: center;
+		-ms-flex-item-align: center;
+		align-self: center;
+		cursor: pointer;
+		outline: none;
+
+		&:hover {
+			background-color: #b19681;
+		}
+	}
 }
 
 @media screen and (max-width: 1200px) {

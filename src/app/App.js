@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useReducer} from 'react';
+import {ContextApp, initialState, testReducer} from './reducer.js';
 import history from '../@history';
 import {Router, Route, Switch} from 'react-router-dom';
 
@@ -8,8 +9,9 @@ import Footer from './home/components/Footer';
 import CookieBanner from './OtherComponents/CookieBanner';
 
 const App = () => {
+	const [state, dispatch] = useReducer(testReducer, initialState);
 	return (
-		<>
+		<ContextApp.Provider value={{dispatch, state}}>
 			<Router history={history}>
 				<Switch>
 					<Route path="/product/:id" component={Product} />
@@ -18,7 +20,7 @@ const App = () => {
 			</Router>
 			<Footer />
 			<CookieBanner />
-		</>
+		</ContextApp.Provider>
 	);
 };
 
