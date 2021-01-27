@@ -1,17 +1,21 @@
-import React, {useReducer} from 'react';
-import {ContextApp, initialState, testReducer} from './reducer.js';
+import React from 'react';
 import history from '../@history';
 import {Router, Route, Switch} from 'react-router-dom';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 
+import rootReducer from './store/reducers/products';
 import Home from './home';
 import Product from './product';
 import Footer from './home/components/Footer';
 import CookieBanner from './OtherComponents/CookieBanner';
 
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 const App = () => {
-	const [state, dispatch] = useReducer(testReducer, initialState);
 	return (
-		<ContextApp.Provider value={{dispatch, state}}>
+		<Provider store={store}>
 			<Router history={history}>
 				<Switch>
 					<Route path="/product/:id" component={Product} />
@@ -20,7 +24,7 @@ const App = () => {
 			</Router>
 			<Footer />
 			<CookieBanner />
-		</ContextApp.Provider>
+		</Provider>
 	);
 };
 

@@ -1,5 +1,6 @@
 .productc {
 	display: flex;
+
 	&__carousel {
 		padding: 1rem;
 		margin-top: 60px;
@@ -9,6 +10,9 @@
 			width: 30rem;
 			display: flex;
 			padding-right: 1rem;
+			&-img {
+				height: 550px;
+			}
 		}
 	}
 	&__detail {

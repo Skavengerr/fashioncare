@@ -6,16 +6,26 @@
 	width: 100%;
 	margin-left: 33px;
 
+	img {
+		max-height: 225px !important;
+	}
+
 	&-item {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 185px;
-		width: 100%;
 		background-color: #979797;
 		color: #fff;
-		margin: 15px;
+
 		font-size: 4em;
+		max-height: 200px;
+		&-top {
+			margin: 0 35px 0 35px;
+		}
+
+		&-bot {
+			margin: 35px;
+		}
 	}
 
 	&-button {

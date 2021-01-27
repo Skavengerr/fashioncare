@@ -1,13 +1,28 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
+
 import {Hidden} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ShoppingBasketOutlinedIcon from '@material-ui/icons/ShoppingBasketOutlined';
 import PublicIcon from '@material-ui/icons/Public';
 
-const Menu = ({region, filterByCategory}) => {
-	const [active, setActive] = useState('kids');
+import {useDispatch, useSelector} from 'react-redux';
+import * as Actions from '../../../store/actions/products';
+
+const CATEGORIES = [
+	{id: 2, title: 'Women'},
+	{id: 1, title: 'Men'},
+	{id: 3, title: 'Kids'}
+];
+
+const Menu = () => {
+	const dispatch = useDispatch();
+	const category = useSelector(state => state.category_id);
+	console.log('🚀 ~ file: Menu.js ~ line 22 ~ Menu ~ category', category);
+	const changeCategory = id => {
+		dispatch(Actions.changeProductCategory(id));
+	};
 
 	return (
 		<div className="header__menu">
@@ -18,39 +33,20 @@ const Menu = ({region, filterByCategory}) => {
 			</Hidden>
 
 			<div className="header__menu-buttons">
-				<button
-					onClick={() => {
-						filterByCategory(2);
-						setActive('women');
-					}}
-					className={active === 'women' ? 'header-b-active' : 'header-b'}
-				>
-					Women
-				</button>
-				<button
-					onClick={() => {
-						filterByCategory(1);
-						setActive('men');
-					}}
-					className={active === 'men' ? 'header-b-active' : 'header-b'}
-				>
-					Men
-				</button>
-				<button
-					onClick={() => {
-						filterByCategory(3);
-						setActive('kids');
-					}}
-					className={active === 'kids' ? 'header-b-active' : 'header-b'}
-				>
-					Kids
-				</button>
+				{CATEGORIES.map(el => (
+					<button
+						onClick={() => changeCategory(el.id)}
+						className={category === el.id ? 'header-b-active' : 'header-b'}
+					>
+						{el.title}
+					</button>
+				))}
 			</div>
 
 			<div className="header__menu-actions">
 				<IconButton size="medium" className="header__menu-actions-icon ml-12">
 					<PublicIcon />
-					<p>{region}</p>
+					{/*<p>{region}</p>*/}
 				</IconButton>
 				<IconButton size="medium" className="header__menu-actions-icon ml-12">
 					<div className="mx-12">ENG</div>

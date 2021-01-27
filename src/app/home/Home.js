@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Divider, Hidden} from '@material-ui/core';
+import {useDispatch} from 'react-redux';
 
+import * as Actions from '../store/actions/products';
 import YouTubeVideos from './components/YouTubeVideos';
 import Instagram from './components/Instagram';
 import Carousel from './components/Carousel';
@@ -9,18 +11,18 @@ import Popular from './components/Popular';
 import Info from './components/Info/Info';
 import Header from './components/Header';
 import Eco from './components/Eco/Eco';
-import {useHome} from './useHome';
 
 import './home.scss';
 
 const Home = () => {
-	const homeInfo = useHome();
-	const {region, products, filterByCategory} = homeInfo;
-
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(Actions.getProducts());
+	}, []); // eslint-disable-line
 	return (
 		<div className="home">
 			<div className="home__page">
-				<Header region={region} filterByCategory={filterByCategory} />
+				<Header />
 				<div className="home__main">
 					<div className="home__main-top">
 						<Hidden mdDown>
@@ -29,9 +31,9 @@ const Home = () => {
 						<Carousel />
 					</div>
 					<Info />
-					<Category products={products} />
+					<Category />
 					<Divider classes={{root: 'main__category-divider'}} />
-					<Popular products={products} />
+					<Popular />
 					<Eco />
 					<Divider classes={{root: 'main__eco-divider'}} />
 					<YouTubeVideos />

@@ -1,56 +1,57 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Carousel from '@brainhubeu/react-carousel';
 import Dots from './Dots';
 import ProductDetail from '../ProductDetail';
 
 import '@brainhubeu/react-carousel/lib/style.css';
 import './productCarousel.scss';
+import {useSelector} from 'react-redux';
 
-class ProductCarousel extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			value: 0,
-			slides: [
-				<img alt="" src="/icons/product/image.jpg" />,
-				<img alt="" src="/icons/product/image.jpg" />,
-				<img alt="" src="/icons/product/image.jpg" />
-			],
-			thumbnails: [
-				<img alt="" src="/icons/product/image.jpg" />,
-				<img alt="" src="/icons/product/image.jpg" />,
-				<img alt="" src="/icons/product/image.jpg" />
-			]
-		};
-		this.onchange = this.onchange.bind(this);
-	}
+function ProductCarousel() {
+	const {Product, ProductImages} = useSelector(state => state.product);
 
-	onchange(value) {
-		this.setState({value});
-	}
+	console.log(
+		'🚀 ~ file: ProductCarousel.js ~ line 14 ~ ProductCarousel ~ Product',
+		Product
+	);
+	const [state, setState] = useState({
+		value: 0,
+		slides: [
+			<img
+				className="productc__carousel-wrap-img"
+				alt=""
+				src={`https://fashioncare.ch/Content/img/${Product.Path}`}
+			/>,
+			<img alt="" src="/icons/product/image.jpg" />,
+			<img alt="" src="/icons/product/image.jpg" />
+		],
+		thumbnails: [
+			<img alt="" src="/icons/product/image.jpg" />,
+			<img alt="" src="/icons/product/image.jpg" />,
+			<img alt="" src="/icons/product/image.jpg" />
+		]
+	});
 
-	render() {
-		return (
-			<div className="productc__carousel">
-				<div className="productc__carousel-wrap">
-					<Carousel
-						value={this.state.value}
-						slides={this.state.slides}
-						onChange={this.onchange}
-					/>
-					<Dots
-						number={this.state.thumbnails.length}
-						thumbnails={this.state.thumbnails}
-						value={this.state.value}
-						onChange={this.onchange}
-					/>
-				</div>
-				<div className="productc__detail">
-					<ProductDetail />
-				</div>
+	const onChange = value => {
+		setState({value});
+	};
+
+	return (
+		<div className="productc__carousel">
+			<div className="productc__carousel-wrap">
+				<Carousel value={state.value} slides={state.slides} onChange={onChange} />
+				<Dots
+					number={state.thumbnails.length}
+					thumbnails={state.thumbnails}
+					value={state.value}
+					onChange={onChange}
+				/>
 			</div>
-		);
-	}
+			<div className="productc__detail">
+				<ProductDetail />
+			</div>
+		</div>
+	);
 }
 
 export default ProductCarousel;
