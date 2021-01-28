@@ -21,7 +21,6 @@ const Menu = () => {
 	const {category_id, region} = useSelector(state => state);
 
 	const changeCategory = id => {
-		console.log('🚀 ~ file: Menu.js ~ line 24 ~ Menu ~ region', region);
 		dispatch(Actions.changeProductCategory(id));
 	};
 

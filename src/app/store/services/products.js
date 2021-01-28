@@ -4,7 +4,7 @@ class productService {
 	getProducts = () =>
 		axios({
 			method: 'GET',
-			url: '/API/ProductList/list'
+			url: '/API/ProductList'
 		});
 	getProductById = id =>
 		axios({

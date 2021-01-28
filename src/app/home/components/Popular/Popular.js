@@ -9,7 +9,7 @@ import './popular.scss';
 const breakPoints = [
 	{width: 1, itemsToShow: 1},
 	{width: 550, itemsToShow: 2},
-	{width: 700, itemsToShow: 5},
+	{width: 700, itemsToShow: 4},
 	{width: 1000, itemsToShow: 5},
 	{width: 1100, itemsToShow: 5}
 ];
@@ -32,25 +32,32 @@ const Popular = () => {
 			<ElasticCarousel
 				renderArrow={myArrow}
 				breakPoints={breakPoints}
-				//enableAutoPlay
-				//autoPlaySpeed={5000}
+				enableAutoPlay
+				autoPlaySpeed={5000}
 				pagination={false}
 			>
 				{products.map(p => (
-					<Card id={p.ProductId} img={p.Path} title={p.Title} price={p.Price} />
+					<Card
+						key={p.ProductId}
+						id={p.ProductId}
+						img={p.Path}
+						title={p.Title}
+						price={p.Price}
+					/>
 				))}
 			</ElasticCarousel>
 			<Typography variant="h4">{winterProducts ? 'Winter' : 'Summer'}</Typography>
 			<ElasticCarousel
 				renderArrow={myArrow}
 				breakPoints={breakPoints}
-				//enableAutoPlay
-				//autoPlaySpeed={5000}
+				enableAutoPlay
+				autoPlaySpeed={5000}
 				pagination={false}
 			>
 				{winterProducts
 					? winterProducts.map(p => (
 							<Card
+								key={p.ProductId}
 								id={p.ProductId}
 								img={p.Path}
 								title={p.Title}
@@ -59,6 +66,7 @@ const Popular = () => {
 					  ))
 					: summerProducts.map(p => (
 							<Card
+								key={p.ProductId}
 								id={p.ProductId}
 								img={p.Path}
 								title={p.Title}

@@ -35,8 +35,8 @@ function Carousel() {
 			<ElasticCarousel
 				renderArrow={myArrow}
 				breakPoints={breakPoints}
-				//enableAutoPlay
-				//autoPlaySpeed={5000}
+				enableAutoPlay
+				autoPlaySpeed={5000}
 				pagination={false}
 			>
 				{products.length >= 5
