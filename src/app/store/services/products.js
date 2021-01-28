@@ -11,6 +11,11 @@ class productService {
 			method: 'GET',
 			url: `/API/Product?id=${id}`
 		});
+	getRegion = () =>
+		axios({
+			method: 'GET',
+			url: `http://www.geoplugin.net/json.gp`
+		});
 }
 
 const instance = new productService();

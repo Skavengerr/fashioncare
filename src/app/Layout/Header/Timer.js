@@ -33,7 +33,7 @@ const Timer = () => {
 		}
 
 		timerComponents.push(
-			<p className="header__top-title">
+			<p key={interval} className="header__top-title">
 				{timeLeft[interval]} {interval}{' '}
 			</p>
 		);

@@ -1,19 +1,16 @@
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
 import Carousel from '@brainhubeu/react-carousel';
+
 import Dots from './Dots';
 import ProductDetail from '../ProductDetail';
 
 import '@brainhubeu/react-carousel/lib/style.css';
 import './productCarousel.scss';
-import {useSelector} from 'react-redux';
 
 function ProductCarousel() {
-	const {Product, ProductImages} = useSelector(state => state.product);
+	const {Product} = useSelector(state => state.product);
 
-	console.log(
-		'🚀 ~ file: ProductCarousel.js ~ line 14 ~ ProductCarousel ~ Product',
-		Product
-	);
 	const [state, setState] = useState({
 		value: 0,
 		slides: [

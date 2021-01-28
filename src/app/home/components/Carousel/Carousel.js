@@ -1,18 +1,17 @@
 import React from 'react';
 import ElasticCarousel, {consts} from 'react-elastic-carousel';
 import {useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
+import Card from '../Card';
 
 import './carousel.scss';
 
 const breakPoints = [
 	{width: 1, itemsToShow: 1},
-	{width: 550, itemsToShow: 2, itemsToScroll: 3},
-	{width: 768, itemsToShow: 4},
-	{width: 1500, itemsToShow: 5}
+	{width: 550, itemsToShow: 2},
+	{width: 700, itemsToShow: 3},
+	{width: 1000, itemsToShow: 4},
+	{width: 1100, itemsToShow: 5}
 ];
-
-const items = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
 
 const myArrow = ({type, onClick, isEdge}) => {
 	const pointer = type === consts.PREV ? '❮' : '❯';
@@ -25,7 +24,12 @@ const myArrow = ({type, onClick, isEdge}) => {
 
 function Carousel() {
 	const products = useSelector(state => state.products);
-	console.log('🚀 ~ file: Carousel.js ~ line 27 ~ Carousel ~ products', products);
+
+	let size = 2;
+	let subarray = [];
+	for (let i = 0; i < Math.ceil(products.length / size); i++) {
+		subarray[i] = products.slice(i * size, i * size + size);
+	}
 	return (
 		<div className="carousel">
 			<ElasticCarousel
@@ -35,30 +39,31 @@ function Carousel() {
 				//autoPlaySpeed={5000}
 				pagination={false}
 			>
-				{products.map(el => (
-					<div style={{display: 'flex', width: 250, flexDirection: 'column'}}>
-						<div>
-							<div className="carousel-item-top">
-								<Link to={`/product/${el.ProductId}`}>
-									<img
-										alt=""
-										src={`https://fashioncare.ch/Content/img/${el.Path}`}
-										className="w-full h-auto"
-									/>
-								</Link>
+				{products.length >= 5
+					? subarray.map((arr, index) => (
+							<div key={index}>
+								{arr.map(p => (
+									<div key={p.ProductId} className="carousel__grid">
+										<Card
+											id={p.ProductId}
+											img={p.Path}
+											title={p.Title}
+											price={p.Price}
+										/>
+									</div>
+								))}
 							</div>
-							<div className="carousel-item-bot">
-								<Link t to={`/product/${el.ProductId}`}>
-									<img
-										alt=""
-										src={`https://fashioncare.ch/Content/img/${el.Path}`}
-										className="w-full h-auto"
-									/>
-								</Link>
+					  ))
+					: products.map(p => (
+							<div key={p.ProductId} className="carousel__grid">
+								<Card
+									id={p.ProductId}
+									img={p.Path}
+									title={p.Title}
+									price={p.Price}
+								/>
 							</div>
-						</div>
-					</div>
-				))}
+					  ))}
 			</ElasticCarousel>
 		</div>
 	);

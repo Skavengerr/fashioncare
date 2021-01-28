@@ -5,25 +5,30 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
+import CookieBanner from './Layout/CookieBanner/CookieBanner';
 import rootReducer from './store/reducers/products';
-import Home from './home';
-import Product from './product';
-import Footer from './home/components/Footer';
-import CookieBanner from './OtherComponents/CookieBanner';
+import Loading from './Layout/Loading';
+import Layout from './Layout';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+
+const Home = React.lazy(() => import('./home')); // Lazy-loaded
+const Product = React.lazy(() => import('./product')); // Lazy-loaded
 
 const App = () => {
 	return (
 		<Provider store={store}>
-			<Router history={history}>
-				<Switch>
-					<Route path="/product/:id" component={Product} />
-					<Route path="/" component={Home} />
-				</Switch>
-			</Router>
-			<Footer />
-			<CookieBanner />
+			<React.Suspense fallback={<Loading />}>
+				<Router history={history}>
+					<Switch>
+						<Layout>
+							<Route path="/product/:id" component={Product} />
+							<Route path="/" exact component={Home} />
+						</Layout>
+					</Switch>
+				</Router>
+				<CookieBanner />
+			</React.Suspense>
 		</Provider>
 	);
 };

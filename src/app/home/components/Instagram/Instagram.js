@@ -1,48 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React from 'react';
+import {useInstagramFeed} from 'use-instagram-feed';
 
 import './instagram.scss';
 
 const Instagram = () => {
-	const [media, setMedia] = useState([]);
-	useEffect(() => {
-		getMedia();
-	}, []);
-
-	const getMedia = async () => {
-		let data = [];
-		let mediaArr;
-		const instaSource = await axios.get('https://www.instagram.com/fashioncare.ch/');
-		const instaObj = instaSource.data
-			.match(
-				/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
-			)[1]
-			.slice(0, -1);
-		if (
-			JSON.parse(instaObj).entry_data &&
-			JSON.parse(instaObj).entry_data.ProfilePage[0]
-		) {
-			mediaArr = JSON.parse(instaObj).entry_data.ProfilePage[0].graphql.user
-				.edge_owner_to_timeline_media.edges;
-			mediaArr.map(el => data.push(el.node));
-			setMedia(data);
-		}
-	};
+	let photos = useInstagramFeed({
+		userId: '36582296016',
+		thumbnailWidth: 640,
+		photoCount: 12
+	});
 
 	return (
 		<div>
 			<p className="eco-text">Instagram</p>
 			<div className="inst">
-				{media &&
-					media.map(el => (
+				{photos &&
+					photos.map(({id, caption, src, width, height, url}) => (
 						<a
-							rel="noreferrer"
-							target="_blank"
-							href="https://www.instagram.com/fashioncare.ch/"
-							key={el.thumbnail_src}
+							key={id}
+							href={url}
 							className="inst__el"
+							target="_blank"
+							rel="noreferrer"
 						>
-							<img src={el.thumbnail_src} alt={el.thumbnail_src} />
+							<img src={src} alt={caption} />
 						</a>
 					))}
 			</div>

@@ -10,7 +10,6 @@
 		flex-direction: column;
 		text-decoration: none;
 		width: 20%;
-		max-width: 200px;
 
 		a {
 			text-decoration: none;
@@ -41,7 +40,6 @@
 		flex-wrap: wrap;
 		&-el {
 			width: 33.3%;
-			max-width: 33.3% !important;
 		}
 	}
 }

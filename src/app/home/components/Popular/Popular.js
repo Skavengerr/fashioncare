@@ -1,43 +1,71 @@
 import React from 'react';
 import {Typography} from '@material-ui/core';
 import {useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
+import ElasticCarousel, {consts} from 'react-elastic-carousel';
+import Card from '../Card';
 
 import './popular.scss';
 
+const breakPoints = [
+	{width: 1, itemsToShow: 1},
+	{width: 550, itemsToShow: 2},
+	{width: 700, itemsToShow: 5},
+	{width: 1000, itemsToShow: 5},
+	{width: 1100, itemsToShow: 5}
+];
+
+const myArrow = ({type, onClick, isEdge}) => {
+	const pointer = type === consts.PREV ? '❮' : '❯';
+	return (
+		<button onClick={onClick} disabled={isEdge} className="carousel-button">
+			{pointer}
+		</button>
+	);
+};
+
 const Popular = () => {
-	const products = useSelector(state => state.products);
+	const {products, winterProducts, summerProducts} = useSelector(state => state);
 	if (!products) return null;
 	return (
 		<>
 			<Typography variant="h4">Popular</Typography>
-			<div className="popular m-0">
-				{products.slice(0, 5).map((p, i) => (
-					<div className="popular__item">
-						<Link to={`/product/${p.ProductId}`}>
-							<img
-								alt={p.Title}
-								src={`https://fashioncare.ch/Content/img/${p.Path}`}
-								className="popular__item-el"
-							/>
-						</Link>
-					</div>
+			<ElasticCarousel
+				renderArrow={myArrow}
+				breakPoints={breakPoints}
+				//enableAutoPlay
+				//autoPlaySpeed={5000}
+				pagination={false}
+			>
+				{products.map(p => (
+					<Card id={p.ProductId} img={p.Path} title={p.Title} price={p.Price} />
 				))}
-			</div>
-			<Typography variant="h4">Winter</Typography>
-			<div className="popular m-0">
-				{products.slice(0, 5).map((p, i) => (
-					<div className="popular__item">
-						<Link to={`/product/${p.ProductId}`}>
-							<img
-								alt={p.Title}
-								src={`https://fashioncare.ch/Content/img/${p.Path}`}
-								className="popular__item-el"
+			</ElasticCarousel>
+			<Typography variant="h4">{winterProducts ? 'Winter' : 'Summer'}</Typography>
+			<ElasticCarousel
+				renderArrow={myArrow}
+				breakPoints={breakPoints}
+				//enableAutoPlay
+				//autoPlaySpeed={5000}
+				pagination={false}
+			>
+				{winterProducts
+					? winterProducts.map(p => (
+							<Card
+								id={p.ProductId}
+								img={p.Path}
+								title={p.Title}
+								price={p.Price}
 							/>
-						</Link>
-					</div>
-				))}
-			</div>
+					  ))
+					: summerProducts.map(p => (
+							<Card
+								id={p.ProductId}
+								img={p.Path}
+								title={p.Title}
+								price={p.Price}
+							/>
+					  ))}
+			</ElasticCarousel>
 		</>
 	);
 };

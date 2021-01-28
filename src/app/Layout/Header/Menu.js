@@ -8,7 +8,7 @@ import ShoppingBasketOutlinedIcon from '@material-ui/icons/ShoppingBasketOutline
 import PublicIcon from '@material-ui/icons/Public';
 
 import {useDispatch, useSelector} from 'react-redux';
-import * as Actions from '../../../store/actions/products';
+import * as Actions from '../../store/actions/products';
 
 const CATEGORIES = [
 	{id: 2, title: 'Women'},
@@ -18,9 +18,10 @@ const CATEGORIES = [
 
 const Menu = () => {
 	const dispatch = useDispatch();
-	const category = useSelector(state => state.category_id);
-	console.log('🚀 ~ file: Menu.js ~ line 22 ~ Menu ~ category', category);
+	const {category_id, region} = useSelector(state => state);
+
 	const changeCategory = id => {
+		console.log('🚀 ~ file: Menu.js ~ line 24 ~ Menu ~ region', region);
 		dispatch(Actions.changeProductCategory(id));
 	};
 
@@ -35,8 +36,9 @@ const Menu = () => {
 			<div className="header__menu-buttons">
 				{CATEGORIES.map(el => (
 					<button
+						key={el.id}
 						onClick={() => changeCategory(el.id)}
-						className={category === el.id ? 'header-b-active' : 'header-b'}
+						className={category_id === el.id ? 'header-b-active' : 'header-b'}
 					>
 						{el.title}
 					</button>
@@ -46,7 +48,7 @@ const Menu = () => {
 			<div className="header__menu-actions">
 				<IconButton size="medium" className="header__menu-actions-icon ml-12">
 					<PublicIcon />
-					{/*<p>{region}</p>*/}
+					<p>{region}</p>
 				</IconButton>
 				<IconButton size="medium" className="header__menu-actions-icon ml-12">
 					<div className="mx-12">ENG</div>
@@ -57,16 +59,12 @@ const Menu = () => {
 
 				<a
 					href="https://fashioncare.ch/Account/Login"
-					target="_blank"
-					rel="noreferrer"
 					className="header__menu-actions-icon"
 				>
 					<AccountCircleOutlinedIcon classes={{root: 'm-auto'}} />
 				</a>
 				<a
 					href="https://fashioncare.ch/Account/Login"
-					target="_blank"
-					rel="noreferrer"
 					className="header__menu-actions-icon"
 				>
 					<ShoppingBasketOutlinedIcon classes={{root: 'm-auto'}} />

@@ -19,14 +19,14 @@ const IMAGES = [
 	{id: 6, title: 'Our technologies', link: 'https://fashioncare.ch/Home/Technologies'}
 ];
 
-const Info = ({noText}) => {
+const Info = () => {
 	return (
 		<div className="info">
 			{IMAGES.map(el => (
 				<div key={el.title} className="info-el">
 					<a rel="noreferrer" target="_blank" href={el.link}>
 						<img alt="" src={`/icons/home/info_${el.id}.svg`} />
-						{!noText && <p>{el.title}</p>}
+						<p>{el.title}</p>
 					</a>
 				</div>
 			))}

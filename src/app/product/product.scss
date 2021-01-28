@@ -1,10 +1,6 @@
 .product {
-	background: linear-gradient(
-		0deg,
-		rgba(219, 208, 200, 1) 70%,
-		rgba(219, 208, 200, 1) 100%
-	);
 	min-height: 100vh;
+	padding: 2rem;
 
 	&__main {
 		display: flex;
