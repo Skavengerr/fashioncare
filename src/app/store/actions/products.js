@@ -26,10 +26,16 @@ export function getProductById(id) {
 }
 
 export function changeProductCategory(id) {
-	return {
-		type: PRODUCT_CATEGORY_CHANGE,
-		id: id
-	};
+	return dispatch =>
+		productService.getProducts().then(res => {
+			return dispatch({
+				type: PRODUCT_CATEGORY_CHANGE,
+				payload: {
+					id: id,
+					data: res.data.Products
+				}
+			});
+		});
 }
 
 export function getRegion() {
