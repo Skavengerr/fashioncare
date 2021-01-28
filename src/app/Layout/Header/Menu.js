@@ -27,7 +27,7 @@ const Menu = () => {
 	return (
 		<div className="header__menu">
 			<Hidden mdDown>
-				<Link to="/" className="header__menu-image">
+				<Link to="/home/index2" className="header__menu-image">
 					<img alt="" src="/icons/header/header.svg" />
 				</Link>
 			</Hidden>

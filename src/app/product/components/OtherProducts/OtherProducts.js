@@ -1,7 +1,9 @@
+import { TextField } from '@material-ui/core';
 import React from 'react';
 import {useSelector} from 'react-redux';
 
 import Card from '../../../home/components/Card';
+import { Social } from '../../../Layout/Header/TopHeader';
 
 import './otherProducts.scss';
 
@@ -48,6 +50,10 @@ const OtherProducts = () => {
 					frameBorder="0"
 				/>
 			</div>
+            <div className="other__email">
+                    <TextField />
+                    <Social />
+            </div>
 		</div>
 	);
 };

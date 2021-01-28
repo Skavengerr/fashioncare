@@ -11,6 +11,9 @@ const Footer = () => {
 			<div className="footer__info">
 				<div className="footer__info-left">
 					<div className="footer__info-left-support">
+						<img alt="footer-images" src="/icons/product/logo.svg" />
+					</div>
+					<div className="footer__info-left-support">
 						<h3 className="footer-h3">Support</h3>
 						<ul>
 							<a href="https://fashioncare.ch/Home/AboutUs">About us</a>
