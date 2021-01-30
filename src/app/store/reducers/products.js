@@ -6,12 +6,15 @@ const initialState = {
 	products: [],
 	winterProducts: [],
 	otherProducts: [],
+	alsoLikeProducts: [],
 	product: {},
 	cartQuantity: 0,
 	region: 'EU'
 };
 
 const Products = function (state = initialState, action) {
+	console.log('🚀 ~ file: products.js ~ line 16 ~ Products ~ action', action);
+	console.log('🚀 ~ file: products.js ~ line 16 ~ Products ~ state', state);
 	switch (action.type) {
 		case Actions.PRODUCTS_GET: {
 			return {
@@ -20,7 +23,8 @@ const Products = function (state = initialState, action) {
 				winterProducts: action.payload.filter(
 					p => p.SeasonId === 1 && p.CategoryId === state.category_id
 				),
-				otherProducts: action.payload
+				otherProducts: action.payload,
+				alsoLikeProducts: action.payload
 			};
 		}
 		case Actions.SEARCH_BY_VALUE: {

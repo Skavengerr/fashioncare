@@ -18,7 +18,7 @@ const Menu = () => {
 	const {category_id, region, cartQuantity} = useSelector(state => state);
 
 	const changeCategory = id => {
-		dispatch(Actions.changeProductCategory(id));
+		dispatch(Actions.filterByCategory(id));
 	};
 
 	return (

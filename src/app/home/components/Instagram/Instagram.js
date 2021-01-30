@@ -1,3 +1,4 @@
+import {Divider} from '@material-ui/core';
 import React from 'react';
 import {useInstagramFeed} from 'use-instagram-feed';
 
@@ -11,9 +12,11 @@ const Instagram = () => {
 	});
 
 	return (
-		<div>
-			<p className="eco-text">Instagram</p>
-			<div className="inst">
+		<div className="inst">
+			<div className="inst__box">
+				<img alt="" src="/icons/home/followus.jpg" />
+			</div>
+			<div>
 				{photos &&
 					photos.map(({id, caption, src, width, height, url}) => (
 						<a

@@ -31,7 +31,7 @@ export function getProductById(id) {
 		});
 }
 
-export function changeProductCategory(id) {
+export function filterByCategory(id) {
 	return {
 		type: FILTER_BY_CATEGORY,
 		payload: {

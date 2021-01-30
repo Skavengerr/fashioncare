@@ -13,6 +13,7 @@ const ProductDetail = () => {
 	const {Product} = useSelector(state => state.product);
 	const [selectedIndex] = useState();
 	const [product, setProduct] = useState({...Product, quantity: 1, size: 'M'});
+
 	const onIncrement = () => {
 		if (product.quantity <= Product.StockAmount) {
 			setProduct({
@@ -140,7 +141,9 @@ const ProductDetail = () => {
 					<div className="title-4">
 						Delivery from:
 						<div className="productInfo__details-size">
-							<p className="productInfo__details-country">Italy</p>
+							<p className="productInfo__details-country">
+								Igi Natur Germany{' '}
+							</p>
 						</div>
 					</div>
 				</div>

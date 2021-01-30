@@ -4,6 +4,7 @@ import '@szhsin/react-menu/dist/index.css';
 import {Hidden} from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux';
 import SearchIcon from '@material-ui/icons/Search';
+import {useHistory} from 'react-router-dom';
 
 import * as Actions from '../../store/actions/products';
 import {PRODUCT_CLASSES, BRANDS} from '../../constants';
@@ -11,6 +12,7 @@ import './nav.scss';
 
 const NavBar = () => {
 	const dispatch = useDispatch();
+	let history = useHistory();
 	const ref = useRef(null);
 	const brandRef = useRef(null);
 	const [isOpen, setOpen] = useState(false);
@@ -19,21 +21,34 @@ const NavBar = () => {
 	const {category_id} = useSelector(state => state);
 
 	const filterByCategoryAndClass = (classId, categoryId) => {
+		history.push('/home/index2');
 		dispatch(Actions.filterByCategoryAndClass(classId, categoryId));
 	};
 
 	const filterByBrand = brandId => {
+		history.push('/home/index2');
 		dispatch(Actions.filterByBrand(brandId));
 	};
 
+	const onFilterByClass = () => {
+		history.push('/home/index2');
+		filterByClass(7);
+	};
+
 	const filterByClass = classId => {
+		history.push('/home/index2');
 		dispatch(Actions.filterByClass(classId));
+	};
+
+	const closeMenus = () => {
+		setOpen(false);
+		setBrandOpen(false);
 	};
 
 	return (
 		<>
 			<div>
-				<div className="nav" onMouseLeave={() => setOpen(false)}>
+				<div className="nav" onMouseLeave={closeMenus}>
 					<Hidden lgUp>
 						<div className="header__nav">
 							<img
@@ -86,10 +101,10 @@ const NavBar = () => {
 								<SubMenu label="Kids">
 									{PRODUCT_CLASSES.map(el => (
 										<MenuItem
+											key={el.id}
 											onClick={() =>
 												filterByCategoryAndClass(el.id, 3)
 											}
-											key={el.id}
 										>
 											{el.title}
 										</MenuItem>
@@ -112,6 +127,7 @@ const NavBar = () => {
 							>
 								{BRANDS.map(brand => (
 									<MenuItem
+										key={brand.BrandId}
 										onClick={() => filterByBrand(brand.BrandId)}
 									>
 										{brand.Name}
@@ -119,21 +135,21 @@ const NavBar = () => {
 								))}
 							</ControlledMenu>
 						</>
-						<p onClick={() => filterByClass(7)}>Jackets and hoodies</p>
+						<p onClick={() => onFilterByClass(7)}>Jackets and hoodies</p>
 						{category_id > 2 && (
-							<p onClick={() => filterByClass(11)}>Bodies and Onesies</p>
+							<p onClick={() => onFilterByClass(11)}>Bodies and Onesies</p>
 						)}
 						{category_id > 2 && (
-							<p onClick={() => filterByClass(1)}>T-Shirts</p>
+							<p onClick={() => onFilterByClass(1)}>T-Shirts</p>
 						)}
 						{category_id > 2 && (
-							<p onClick={() => filterByClass(5)}>Dresses</p>
+							<p onClick={() => onFilterByClass(5)}>Dresses</p>
 						)}
 						{category_id > 2 && (
-							<p onClick={() => filterByClass(4)}>Shorts</p>
+							<p onClick={() => onFilterByClass(4)}>Shorts</p>
 						)}
 						{category_id > 2 && (
-							<p onClick={() => filterByClass(9)}>Leggings</p>
+							<p onClick={() => onFilterByClass(9)}>Leggings</p>
 						)}
 						<Hidden lgUp>
 							<p>Delivery</p>
