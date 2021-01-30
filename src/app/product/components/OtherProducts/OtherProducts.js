@@ -8,7 +8,7 @@ import {Social} from '../../../Layout/Header/TopHeader';
 import './otherProducts.scss';
 
 const OtherProducts = () => {
-	const {otherProducts} = useSelector(state => state);
+	const {alsoLikeProducts} = useSelector(state => state);
 
 	function shuffle(array) {
 		var currentIndex = array.length,
@@ -30,7 +30,7 @@ const OtherProducts = () => {
 		<div className="other">
 			<p className="other__text">You may also like</p>
 			<div className="other__products">
-				{shuffle(otherProducts)
+				{shuffle(alsoLikeProducts)
 					.slice(0, 10)
 					.map(p => (
 						<Card

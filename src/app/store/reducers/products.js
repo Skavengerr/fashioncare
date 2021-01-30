@@ -13,8 +13,6 @@ const initialState = {
 };
 
 const Products = function (state = initialState, action) {
-	console.log('🚀 ~ file: products.js ~ line 16 ~ Products ~ action', action);
-	console.log('🚀 ~ file: products.js ~ line 16 ~ Products ~ state', state);
 	switch (action.type) {
 		case Actions.PRODUCTS_GET: {
 			return {
