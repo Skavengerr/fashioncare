@@ -11,6 +11,11 @@ class productService {
 			method: 'GET',
 			url: `/API/Product?id=${id}`
 		});
+	searchByValue = value =>
+		axios({
+			method: 'GET',
+			url: `/API/ProductList?search=${value}`
+		});
 	getRegion = () =>
 		axios({
 			method: 'GET',

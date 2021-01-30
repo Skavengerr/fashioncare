@@ -2,19 +2,32 @@ import React, {useState, useRef} from 'react';
 import {ControlledMenu, MenuItem, SubMenu} from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/index.css';
 import {Hidden} from '@material-ui/core';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import SearchIcon from '@material-ui/icons/Search';
 
 import * as Actions from '../../store/actions/products';
+import {PRODUCT_CLASSES, BRANDS} from '../../constants';
 import './nav.scss';
-import {PRODUCT_CLASSES} from '../../constants';
 
 const NavBar = () => {
 	const dispatch = useDispatch();
 	const ref = useRef(null);
+	const brandRef = useRef(null);
 	const [isOpen, setOpen] = useState(false);
+	const [brandIsOpen, setBrandOpen] = useState(false);
+	const value = useRef(null);
+	const {category_id} = useSelector(state => state);
 
-	const filterProduct = (classId, categoryId) => {
+	const filterByCategoryAndClass = (classId, categoryId) => {
 		dispatch(Actions.filterByCategoryAndClass(classId, categoryId));
+	};
+
+	const filterByBrand = brandId => {
+		dispatch(Actions.filterByBrand(brandId));
+	};
+
+	const filterByClass = classId => {
+		dispatch(Actions.filterByClass(classId));
 	};
 
 	return (
@@ -57,19 +70,25 @@ const NavBar = () => {
 								onClose={() => setOpen(false)}
 							>
 								<SubMenu label="Men">
-									<MenuItem onClick={() => filterProduct(7, 1)}>
+									<MenuItem
+										onClick={() => filterByCategoryAndClass(7, 1)}
+									>
 										Jackets and Hoodies
 									</MenuItem>
 								</SubMenu>
 								<SubMenu label="Women">
-									<MenuItem onClick={() => filterProduct(7, 2)}>
+									<MenuItem
+										onClick={() => filterByCategoryAndClass(7, 2)}
+									>
 										Jackets and Hoodies
 									</MenuItem>
 								</SubMenu>
 								<SubMenu label="Kids">
 									{PRODUCT_CLASSES.map(el => (
 										<MenuItem
-											onClick={() => filterProduct(el.id, 3)}
+											onClick={() =>
+												filterByCategoryAndClass(el.id, 3)
+											}
 											key={el.id}
 										>
 											{el.title}
@@ -78,19 +97,74 @@ const NavBar = () => {
 								</SubMenu>
 							</ControlledMenu>
 						</>
-						<p>Brands</p>
-						<p>Coats and jackets</p>
-						<p>Bodys and Onesies</p>
-						<p>T-Shirts</p>
-						<p>Dresses</p>
-						<p>Shorts</p>
-						<p>Leggings</p>
+						<>
+							<button
+								ref={brandRef}
+								className="nav__menu-button"
+								onMouseEnter={() => setBrandOpen(true)}
+							>
+								Brands
+							</button>
+							<ControlledMenu
+								anchorRef={brandRef}
+								isOpen={brandIsOpen}
+								onClose={() => setBrandOpen(false)}
+							>
+								{BRANDS.map(brand => (
+									<MenuItem
+										onClick={() => filterByBrand(brand.BrandId)}
+									>
+										{brand.Name}
+									</MenuItem>
+								))}
+							</ControlledMenu>
+						</>
+						<p onClick={() => filterByClass(7)}>Jackets and hoodies</p>
+						{category_id > 2 && (
+							<p onClick={() => filterByClass(11)}>Bodies and Onesies</p>
+						)}
+						{category_id > 2 && (
+							<p onClick={() => filterByClass(1)}>T-Shirts</p>
+						)}
+						{category_id > 2 && (
+							<p onClick={() => filterByClass(5)}>Dresses</p>
+						)}
+						{category_id > 2 && (
+							<p onClick={() => filterByClass(4)}>Shorts</p>
+						)}
+						{category_id > 2 && (
+							<p onClick={() => filterByClass(9)}>Leggings</p>
+						)}
 						<Hidden lgUp>
 							<p>Delivery</p>
 							<p>Submit a return</p>
 							<p>Packaging</p>
 							<p>Contact us</p>
 							<p>FAQ</p>
+						</Hidden>
+						<Hidden mdDown className="ml-20">
+							<div className="flex">
+								<input
+									style={{
+										height: 23,
+										minWidth: 200
+									}}
+									type="text"
+									placeholder="Search..."
+									ref={value}
+								/>
+
+								<button
+									style={{background: '#2796FF', border: 'none'}}
+									onClick={() =>
+										dispatch(
+											Actions.searchByValue(value.current.value)
+										)
+									}
+								>
+									<SearchIcon style={{color: '#fff'}} />
+								</button>
+							</div>
 						</Hidden>
 					</div>
 				</div>

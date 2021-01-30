@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
-import ProductCarousel from './components/ProductCarousel';
 import * as Actions from '../store/actions/products';
 import Loading from '../Layout/Loading';
 import Breadcrumb from './components/Breadcumb';
 
 import './product.scss';
-import OtherProducts from './components/OtherProducts';
+
+const OtherProducts = React.lazy(() => import('./components/OtherProducts'));
+const ProductCarousel = React.lazy(() => import('./components/ProductCarousel'));
 
 const Product = () => {
 	let {id} = useParams();

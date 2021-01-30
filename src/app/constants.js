@@ -16,3 +16,14 @@ export const PRODUCT_CLASSES = [
 	{id: 6, title: 'Underwear'},
 	{id: 13, title: 'Cosmetics'}
 ];
+
+export const BRANDS = [
+	{
+		BrandId: 8,
+		Name: 'Ege Organics'
+	},
+	{
+		BrandId: 9,
+		Name: 'ZEROBARRACENTO'
+	}
+];

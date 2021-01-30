@@ -42,9 +42,11 @@
 }
 
 .nav > .nav-links {
-	display: inline;
+	display: flex;
+	align-items: center;
 	float: left;
 	font-size: 18px;
+	width: 100%;
 }
 
 .nav > .nav-links > p {
@@ -85,6 +87,13 @@
 				display: block;
 				color: #fff;
 			}
+		}
+	}
+
+	.nav > .nav-input {
+		input {
+			height: 25px !important;
+			min-width: 100px !important;
 		}
 	}
 	.nav > .nav-btn {

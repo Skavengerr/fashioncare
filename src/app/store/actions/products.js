@@ -5,6 +5,8 @@ export const CLEAR_FILTER_BY_CATEGORY = 'CLEAR_FILTER_BY_CATEGORY';
 export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';
 export const PRODUCT_GET_BY_ID = 'PRODUCT_GET_BY_ID';
 export const FILTER_BY_CLASS = 'FILTER_BY_CLASS';
+export const FILTER_BY_BRAND = 'FILTER_BY_BRAND';
+export const SEARCH_BY_VALUE = 'SEARCH_BY_VALUE';
 export const PRODUCTS_GET = 'PRODUCTS_GET';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REGION_GET = 'REGION_GET';
@@ -53,6 +55,15 @@ export function filterByClass(id) {
 	};
 }
 
+export function filterByBrand(id) {
+	return {
+		type: FILTER_BY_BRAND,
+		payload: {
+			id
+		}
+	};
+}
+
 export function filterByCategoryAndClass(classId, categoryId) {
 	return {
 		type: FILTER_BY_CATEGORY_AND_CLASS,
@@ -61,6 +72,16 @@ export function filterByCategoryAndClass(classId, categoryId) {
 			categoryId
 		}
 	};
+}
+
+export function searchByValue(id) {
+	return dispatch =>
+		productService.searchByValue(id).then(res => {
+			return dispatch({
+				type: SEARCH_BY_VALUE,
+				payload: res.data.Products
+			});
+		});
 }
 
 export function addToCart(product) {
