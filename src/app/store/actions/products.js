@@ -10,6 +10,7 @@ export const SEARCH_BY_VALUE = 'SEARCH_BY_VALUE';
 export const PRODUCTS_GET = 'PRODUCTS_GET';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REGION_GET = 'REGION_GET';
+export const SEND_EMAIL = 'SEND_EMAIL';
 
 export function getProducts() {
 	return dispatch =>
@@ -80,6 +81,16 @@ export function searchByValue(id) {
 			return dispatch({
 				type: SEARCH_BY_VALUE,
 				payload: res.data.Products
+			});
+		});
+}
+
+export function sendEmail(email) {
+	return dispatch =>
+		productService.sendEmail(email).then(res => {
+			return dispatch({
+				type: SEND_EMAIL,
+				payload: res.data
 			});
 		});
 }

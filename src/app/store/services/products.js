@@ -16,6 +16,11 @@ class productService {
 			method: 'GET',
 			url: `/API/ProductList?search=${value}`
 		});
+	sendEmail = email =>
+		axios({
+			method: 'GET',
+			url: `/API/SendCatalog?email=${email}`
+		});
 	getRegion = () =>
 		axios({
 			method: 'GET',

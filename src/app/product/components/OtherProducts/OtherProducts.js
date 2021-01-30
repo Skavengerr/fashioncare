@@ -1,14 +1,22 @@
-import React from 'react';
-import {TextField, Button} from '@material-ui/core';
-import {useSelector} from 'react-redux';
+import React, {useRef} from 'react';
+import {TextField} from '@material-ui/core';
+import {useDispatch, useSelector} from 'react-redux';
 
 import Card from '../../../home/components/Card';
 import {Social} from '../../../Layout/Header/TopHeader';
+import * as Actions from '../../../store/actions/products';
 
 import './otherProducts.scss';
 
 const OtherProducts = () => {
 	const {alsoLikeProducts} = useSelector(state => state);
+	const dispatch = useDispatch();
+	const email = useRef();
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		dispatch(Actions.sendEmail(email.current.value));
+	};
 
 	function shuffle(array) {
 		var currentIndex = array.length,
@@ -53,17 +61,18 @@ const OtherProducts = () => {
 			</div>
 			<div className="flex m-auto">
 				<div className="other__email-wrap">
-					<div className="other__email-search">
+					<form onSubmit={handleSubmit} className="other__email-search">
 						<TextField
 							fullWidth
 							id="outlined-search"
 							label="Email"
-							type="search"
+							type="email"
 							variant="outlined"
+							inputRef={email}
 							className="other__email-search-input"
 						/>
-						<button>Send</button>
-					</div>
+						<button type="submit">Send</button>
+					</form>
 					<Social other />
 				</div>
 			</div>

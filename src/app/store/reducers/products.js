@@ -150,6 +150,12 @@ const Products = function (state = initialState, action) {
 				cartQuantity: (state.cartQuantity += action.payload.quantity)
 			};
 		}
+		case Actions.SEND_EMAIL: {
+			return {
+				...state,
+				catalog: action.payload
+			};
+		}
 		case Actions.REGION_GET: {
 			return {
 				...state,
