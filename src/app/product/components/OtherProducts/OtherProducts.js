@@ -1,9 +1,9 @@
-import { TextField } from '@material-ui/core';
 import React from 'react';
+import {TextField, Button} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 
 import Card from '../../../home/components/Card';
-import { Social } from '../../../Layout/Header/TopHeader';
+import {Social} from '../../../Layout/Header/TopHeader';
 
 import './otherProducts.scss';
 
@@ -39,6 +39,7 @@ const OtherProducts = () => {
 							img={p.Path}
 							title={p.Title}
 							price={p.Price}
+							other
 						/>
 					))}
 			</div>
@@ -50,10 +51,22 @@ const OtherProducts = () => {
 					frameBorder="0"
 				/>
 			</div>
-            <div className="other__email">
-                    <TextField />
-                    <Social />
-            </div>
+			<div className="flex m-auto">
+				<div className="other__email-wrap">
+					<div className="other__email-search">
+						<TextField
+							fullWidth
+							id="outlined-search"
+							label="Email"
+							type="search"
+							variant="outlined"
+							className="other__email-search-input"
+						/>
+						<button>Send</button>
+					</div>
+					<Social other />
+				</div>
+			</div>
 		</div>
 	);
 };

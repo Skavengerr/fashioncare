@@ -31,41 +31,43 @@ function Carousel() {
 		subarray[i] = products.slice(i * size, i * size + size);
 	}
 	return (
-		<div className="carousel">
-			<ElasticCarousel
-				renderArrow={myArrow}
-				breakPoints={breakPoints}
-				enableAutoPlay
-				autoPlaySpeed={5000}
-				pagination={false}
-			>
-				{products.length >= 5
-					? subarray.map((arr, index) => (
-							<div key={index}>
-								{arr.map(p => (
-									<div key={p.ProductId} className="carousel__grid">
-										<Card
-											id={p.ProductId}
-											img={p.Path}
-											title={p.Title}
-											price={p.Price}
-										/>
-									</div>
-								))}
-							</div>
-					  ))
-					: products.map(p => (
-							<div key={p.ProductId} className="carousel__grid">
-								<Card
-									id={p.ProductId}
-									img={p.Path}
-									title={p.Title}
-									price={p.Price}
-								/>
-							</div>
-					  ))}
-			</ElasticCarousel>
-		</div>
+		products && (
+			<div className="carousel">
+				<ElasticCarousel
+					renderArrow={myArrow}
+					breakPoints={breakPoints}
+					enableAutoPlay
+					autoPlaySpeed={5000}
+					pagination={false}
+				>
+					{products.length >= 5
+						? subarray.map((arr, index) => (
+								<div key={index}>
+									{arr.map(p => (
+										<div key={p.ProductId} className="carousel__grid">
+											<Card
+												id={p.ProductId}
+												img={p.Path}
+												title={p.Title}
+												price={p.Price}
+											/>
+										</div>
+									))}
+								</div>
+						  ))
+						: products.map(p => (
+								<div key={p.ProductId} className="carousel__grid">
+									<Card
+										id={p.ProductId}
+										img={p.Path}
+										title={p.Title}
+										price={p.Price}
+									/>
+								</div>
+						  ))}
+				</ElasticCarousel>
+			</div>
+		)
 	);
 }
 

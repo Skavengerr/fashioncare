@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import Loading from './Loading';
 
@@ -14,9 +14,6 @@ const Layout = ({children}) => {
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const [loading, setLoading] = useState(true);
-
-	const products = useSelector(state => state.products);
-
 	const className = location.pathname === '/' ? 'layout-home' : 'layout';
 
 	useEffect(() => {
@@ -25,7 +22,7 @@ const Layout = ({children}) => {
 		dispatch(Actions.getProducts()).then(() => setLoading(false));
 	}, []); // eslint-disable-line
 
-	if (!products.length || loading) {
+	if (loading) {
 		return (
 			<div className={className}>
 				<Header />

@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 
 import {CATEGORY, PRODUCT_CLASSES} from '../../../constants';
 import './breadcrumb.scss';
@@ -12,7 +12,7 @@ function Breadcrumb() {
 
 	return (
 		<Breadcrumbs aria-label="breadcrumb" className="breadcrumb">
-			<Link href="/">Home</Link>
+			<Link to="/home/index2">Home</Link>
 			<Typography color="textPrimary">
 				{CATEGORY[Product.CategoryId - 1]}
 			</Typography>

@@ -2,6 +2,7 @@ import React from 'react';
 import {Typography} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 import ElasticCarousel, {consts} from 'react-elastic-carousel';
+
 import Card from '../Card';
 
 import './popular.scss';
@@ -24,38 +25,21 @@ const myArrow = ({type, onClick, isEdge}) => {
 };
 
 const Popular = () => {
-	const {products, winterProducts, summerProducts} = useSelector(state => state);
+	const {products, winterProducts} = useSelector(state => state);
 	if (!products) return null;
 	return (
 		<>
-			<Typography variant="h4">Popular</Typography>
-			<ElasticCarousel
-				renderArrow={myArrow}
-				breakPoints={breakPoints}
-				enableAutoPlay
-				autoPlaySpeed={5000}
-				pagination={false}
-			>
-				{products.map(p => (
-					<Card
-						key={p.ProductId}
-						id={p.ProductId}
-						img={p.Path}
-						title={p.Title}
-						price={p.Price}
-					/>
-				))}
-			</ElasticCarousel>
-			<Typography variant="h4">{winterProducts ? 'Winter' : 'Summer'}</Typography>
-			<ElasticCarousel
-				renderArrow={myArrow}
-				breakPoints={breakPoints}
-				enableAutoPlay
-				autoPlaySpeed={5000}
-				pagination={false}
-			>
-				{winterProducts
-					? winterProducts.map(p => (
+			{products.length ? (
+				<>
+					<Typography variant="h4">Popular</Typography>
+					<ElasticCarousel
+						renderArrow={myArrow}
+						breakPoints={breakPoints}
+						enableAutoPlay
+						autoPlaySpeed={5000}
+						pagination={false}
+					>
+						{products.map(p => (
 							<Card
 								key={p.ProductId}
 								id={p.ProductId}
@@ -63,8 +47,24 @@ const Popular = () => {
 								title={p.Title}
 								price={p.Price}
 							/>
-					  ))
-					: summerProducts.map(p => (
+						))}
+					</ElasticCarousel>
+				</>
+			) : null}
+			{winterProducts.length ? (
+				<>
+					<Typography variant="h4">
+						{winterProducts ? 'Winter' : 'Summer'}
+					</Typography>
+
+					<ElasticCarousel
+						renderArrow={myArrow}
+						breakPoints={breakPoints}
+						enableAutoPlay
+						autoPlaySpeed={5000}
+						pagination={false}
+					>
+						{winterProducts.map(p => (
 							<Card
 								key={p.ProductId}
 								id={p.ProductId}
@@ -72,8 +72,10 @@ const Popular = () => {
 								title={p.Title}
 								price={p.Price}
 							/>
-					  ))}
-			</ElasticCarousel>
+						))}
+					</ElasticCarousel>
+				</>
+			) : null}
 		</>
 	);
 };

@@ -1,13 +1,26 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
+import {ControlledMenu, MenuItem, SubMenu} from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
 import {Hidden} from '@material-ui/core';
+import {useDispatch} from 'react-redux';
 
+import * as Actions from '../../store/actions/products';
 import './nav.scss';
+import {PRODUCT_CLASSES} from '../../constants';
 
 const NavBar = () => {
+	const dispatch = useDispatch();
+	const ref = useRef(null);
+	const [isOpen, setOpen] = useState(false);
+
+	const filterProduct = (classId, categoryId) => {
+		dispatch(Actions.filterByCategoryAndClass(classId, categoryId));
+	};
+
 	return (
 		<>
 			<div>
-				<div className="nav">
+				<div className="nav" onMouseLeave={() => setOpen(false)}>
 					<Hidden lgUp>
 						<div className="header__nav">
 							<img
@@ -29,7 +42,42 @@ const NavBar = () => {
 
 					<div className="nav-links">
 						<p className="text-bold">Services</p>
-						<p>Shop</p>
+						<>
+							<button
+								ref={ref}
+								className="nav__menu-button"
+								onMouseEnter={() => setOpen(true)}
+							>
+								Shop
+							</button>
+
+							<ControlledMenu
+								anchorRef={ref}
+								isOpen={isOpen}
+								onClose={() => setOpen(false)}
+							>
+								<SubMenu label="Men">
+									<MenuItem onClick={() => filterProduct(7, 1)}>
+										Jackets and Hoodies
+									</MenuItem>
+								</SubMenu>
+								<SubMenu label="Women">
+									<MenuItem onClick={() => filterProduct(7, 2)}>
+										Jackets and Hoodies
+									</MenuItem>
+								</SubMenu>
+								<SubMenu label="Kids">
+									{PRODUCT_CLASSES.map(el => (
+										<MenuItem
+											onClick={() => filterProduct(el.id, 3)}
+											key={el.id}
+										>
+											{el.title}
+										</MenuItem>
+									))}
+								</SubMenu>
+							</ControlledMenu>
+						</>
 						<p>Brands</p>
 						<p>Coats and jackets</p>
 						<p>Bodys and Onesies</p>

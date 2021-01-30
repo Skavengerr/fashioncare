@@ -1,15 +1,19 @@
 import productService from '../services/products';
 
-export const PRODUCT_CATEGORY_CHANGE = 'PRODUCT_CATEGORY_CHANGE';
+export const FILTER_BY_CATEGORY_AND_CLASS = 'FILTER_BY_CATEGORY_AND_CLASS';
+export const CLEAR_FILTER_BY_CATEGORY = 'CLEAR_FILTER_BY_CATEGORY';
+export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';
 export const PRODUCT_GET_BY_ID = 'PRODUCT_GET_BY_ID';
-export const PRODUCT_GET = 'PRODUCT_GET';
+export const FILTER_BY_CLASS = 'FILTER_BY_CLASS';
+export const PRODUCTS_GET = 'PRODUCTS_GET';
+export const ADD_TO_CART = 'ADD_TO_CART';
 export const REGION_GET = 'REGION_GET';
 
 export function getProducts() {
 	return dispatch =>
 		productService.getProducts().then(res => {
 			return dispatch({
-				type: PRODUCT_GET,
+				type: PRODUCTS_GET,
 				payload: res.data.Products
 			});
 		});
@@ -26,16 +30,44 @@ export function getProductById(id) {
 }
 
 export function changeProductCategory(id) {
-	return dispatch =>
-		productService.getProducts().then(res => {
-			return dispatch({
-				type: PRODUCT_CATEGORY_CHANGE,
-				payload: {
-					id: id,
-					data: res.data.Products
-				}
-			});
-		});
+	return {
+		type: FILTER_BY_CATEGORY,
+		payload: {
+			id
+		}
+	};
+}
+
+export function clearFilterByClass() {
+	return {
+		type: CLEAR_FILTER_BY_CATEGORY
+	};
+}
+
+export function filterByClass(id) {
+	return {
+		type: FILTER_BY_CLASS,
+		payload: {
+			id
+		}
+	};
+}
+
+export function filterByCategoryAndClass(classId, categoryId) {
+	return {
+		type: FILTER_BY_CATEGORY_AND_CLASS,
+		payload: {
+			classId,
+			categoryId
+		}
+	};
+}
+
+export function addToCart(product) {
+	return {
+		type: ADD_TO_CART,
+		payload: product
+	};
 }
 
 export function getRegion() {

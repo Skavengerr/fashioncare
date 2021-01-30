@@ -63,7 +63,6 @@
 		padding: 0 2.4rem;
 		display: flex;
 		justify-content: space-between;
-		//height: 120px;
 
 		&-buttons {
 			align-self: flex-end;
@@ -86,8 +85,9 @@
 			&-icon {
 				display: flex;
 				color: #fff !important;
-				width: 80px !important;
+				width: 60px !important;
 				padding: 0 !important;
+				margin-left: 1rem;
 			}
 
 			button {
@@ -114,8 +114,15 @@
 		&-social {
 			display: flex;
 			align-items: center;
+			text-align: center;
 			width: 25%;
+			&-2 {
+				text-align: center;
+				margin: auto !important;
+				width: 100% !important;
+			}
 		}
+
 		&-main {
 			display: flex;
 			align-items: center;

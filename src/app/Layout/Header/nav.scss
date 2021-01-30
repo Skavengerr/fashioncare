@@ -1,8 +1,29 @@
+.text {
+	font-family: 'Playfair Display';
+	font-style: normal;
+	font-size: 20px;
+	line-height: 27px;
+	display: inline-block;
+	padding: 16px;
+	text-decoration: none;
+	color: #444444;
+	margin: 0 1rem;
+	cursor: pointer;
+}
+
 .nav {
 	height: 58px;
 	width: 100%;
 	background-color: #fff;
 	position: relative;
+
+	&__menu {
+		&-button {
+			background: transparent;
+			border: none;
+			@extend .text;
+		}
+	}
 }
 
 .nav > .nav-header {
@@ -27,16 +48,7 @@
 }
 
 .nav > .nav-links > p {
-	font-family: 'Playfair Display';
-	font-style: normal;
-	font-size: 20px;
-	line-height: 27px;
-	display: inline-block;
-	padding: 16px;
-	text-decoration: none;
-	color: #444444;
-	margin: 0 1rem;
-	cursor: pointer;
+	@extend .text;
 
 	position: relative;
 	&:after {
@@ -67,6 +79,13 @@
 	.nav {
 		background: #8e5937;
 		color: #fff;
+
+		&__menu {
+			&-button {
+				display: block;
+				color: #fff;
+			}
+		}
 	}
 	.nav > .nav-btn {
 		display: inline-block;

@@ -2,6 +2,7 @@ import React from 'react';
 import history from '../@history';
 import {Router, Route, Switch} from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
@@ -10,7 +11,7 @@ import rootReducer from './store/reducers/products';
 import Loading from './Layout/Loading';
 import Layout from './Layout';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 const Home = React.lazy(() => import('./home')); // Lazy-loaded
 const Product = React.lazy(() => import('./product')); // Lazy-loaded

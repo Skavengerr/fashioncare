@@ -9,28 +9,30 @@ import '@brainhubeu/react-carousel/lib/style.css';
 import './productCarousel.scss';
 
 function ProductCarousel() {
-	const {Product} = useSelector(state => state.product);
+	const {Product, ProductImages} = useSelector(state => state.product);
+	let thumbnails = [];
 
-	const [state, setState] = useState({
-		value: 0,
-		slides: [
+	if (ProductImages[0] && ProductImages[0].Path) {
+		thumbnails = ProductImages.map(img => [
+			<img alt="" src={`https://fashioncare.ch/Content/img/${img.Path}`} />
+		]);
+	} else {
+		thumbnails = [
 			<img
 				className="productc__carousel-wrap-img"
 				alt=""
 				src={`https://fashioncare.ch/Content/img/${Product.Path}`}
-			/>,
-			<img alt="" src="/icons/product/image.jpg" />,
-			<img alt="" src="/icons/product/image.jpg" />
-		],
-		thumbnails: [
-			<img alt="" src="/icons/product/image.jpg" />,
-			<img alt="" src="/icons/product/image.jpg" />,
-			<img alt="" src="/icons/product/image.jpg" />
-		]
+			/>
+		];
+	}
+	const [state, setState] = useState({
+		value: 0,
+		slides: thumbnails,
+		thumbnails: thumbnails
 	});
 
 	const onChange = value => {
-		setState({value});
+		setState({...state, value});
 	};
 
 	return (
@@ -39,7 +41,11 @@ function ProductCarousel() {
 				<Carousel value={state.value} slides={state.slides} onChange={onChange} />
 				<Dots
 					number={state.thumbnails.length}
-					thumbnails={state.thumbnails}
+					thumbnails={
+						ProductImages[0] && ProductImages[0].Path
+							? state.thumbnails.slice(0, 9)
+							: ''
+					}
 					value={state.value}
 					onChange={onChange}
 				/>

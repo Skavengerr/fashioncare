@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ElasticCarousel, {consts} from 'react-elastic-carousel';
+import {useDispatch} from 'react-redux';
 
+import {PRODUCT_CLASSES} from '../../../constants';
+import * as Actions from '../../../store/actions/products';
 import './category.scss';
 
 const breakPoints = [
@@ -10,7 +13,6 @@ const breakPoints = [
 	{width: 1500, itemsToShow: 5}
 ];
 
-const items = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'];
 const myArrow = ({type, onClick, isEdge}) => {
 	const pointer = type === consts.PREV ? '❮' : '❯';
 	return (
@@ -20,7 +22,22 @@ const myArrow = ({type, onClick, isEdge}) => {
 	);
 };
 
+const classes = [1, 7, 3, 4, 5];
+
 function Category() {
+	const dispatch = useDispatch();
+	const [classId, setClassId] = useState(null);
+
+	const changeProductClass = id => {
+		if (id === classId) {
+			dispatch(Actions.clearFilterByClass());
+			setClassId(null);
+		} else {
+			setClassId(id);
+			dispatch(Actions.filterByClass(id));
+		}
+	};
+
 	return (
 		<div className="category">
 			<ElasticCarousel
@@ -30,9 +47,15 @@ function Category() {
 				autoPlaySpeed={7500}
 				pagination={false}
 			>
-				{items.map((el, i) => (
-					<div key={i} className="category-item">
-						<img alt="" src={`/icons/product/category_${el}.jpg`} />
+				{PRODUCT_CLASSES.slice(0, 5).map((el, i) => (
+					<div
+						key={el.id}
+						className={`category-item ${
+							classId === classes[i] ? 'category-item-active' : ''
+						}`}
+						onClick={() => changeProductClass(el.id)}
+					>
+						<img alt="" src={`/icons/product/category_${el.id}.jpg`} />
 					</div>
 				))}
 			</ElasticCarousel>

@@ -25,6 +25,11 @@
 		}
 	}
 
+	&-link {
+		text-decoration: none !important;
+		color: #444444;
+	}
+
 	&__info {
 		background: #fff;
 		min-height: 80px;
@@ -46,16 +51,23 @@
 	}
 }
 
-.card-link {
-	text-decoration: none !important;
-	color: #444444;
+.card-other {
+	width: 20%;
 }
 
+@media screen and (max-width: 1200px) {
+	.card-other {
+		width: 25%;
+	}
+}
 @media screen and (max-width: 1000px) {
 	.card {
 		&__info {
 			margin: 0 1rem;
 		}
+	}
+	.card-other {
+		width: 33%;
 	}
 }
 @media screen and (max-width: 768px) {
@@ -65,5 +77,8 @@
 			min-height: 110px;
 			height: auto;
 		}
+	}
+	.card-other {
+		width: 50%;
 	}
 }

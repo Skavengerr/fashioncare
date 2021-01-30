@@ -6,12 +6,8 @@
 		display: flex;
 
 		&-wrap {
-			width: 30rem;
+			width: 35rem;
 			display: flex;
-			padding-right: 1rem;
-			&-img {
-				height: 550px;
-			}
 		}
 	}
 	&__detail {
@@ -22,9 +18,9 @@
 }
 
 .BrainhubCarouselItem {
-	max-width: 0;
-	min-width: 0;
-	width: 22rem;
+	img {
+		width: 100%;
+	}
 }
 
 @media screen and (max-width: 1200px) {

@@ -3,9 +3,9 @@ import {Link} from 'react-router-dom';
 
 import './card.scss';
 
-const Card = ({id, img, title, price}) => {
+const Card = ({id, img, title, price, other}) => {
 	return (
-		<Link className="card-link" to={`/product/${id}`}>
+		<Link className={`card-link  ${other ? 'card-other' : ''}`} to={`/product/${id}`}>
 			<div className="card">
 				<img
 					alt=""

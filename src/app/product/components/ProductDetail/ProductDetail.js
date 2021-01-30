@@ -1,15 +1,49 @@
 import React, {useState} from 'react';
 import {Button, Divider} from '@material-ui/core';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Menu, Bookmarks, NavigateNext} from '@material-ui/icons';
 
 import {CATEGORY, PRODUCT_CLASSES} from '../../../constants';
+import * as Actions from '../../../store/actions/products';
 import Accordion from './Accordion';
 import './productDetail.scss';
 
 const ProductDetail = () => {
+	const dispatch = useDispatch();
 	const {Product} = useSelector(state => state.product);
 	const [selectedIndex] = useState();
+	const [product, setProduct] = useState({...Product, quantity: 1, size: 'M'});
+	const onIncrement = () => {
+		if (product.quantity <= Product.StockAmount) {
+			setProduct({
+				...product,
+				quantity: (product.quantity += 1)
+			});
+		} else if (product.quantity >= Product.StockAmount - 1) {
+			return alert(`Max product quantity it's ${Product.StockAmount}`);
+		}
+	};
+
+	const onDecrement = () => {
+		if (product.quantity > 0) {
+			setProduct({
+				...product,
+				quantity: (product.quantity -= 1)
+			});
+		}
+	};
+
+	const handleSubmit = () => {
+		if (product.quantity <= Product.StockAmount) {
+			dispatch(Actions.addToCart(product));
+			setProduct({...product, quantity: 0});
+			sessionStorage.setItem('UserID', 10);
+			sessionStorage.setItem('Username', 'User');
+			sessionStorage.setItem('UserRole', 'UserRole');
+			sessionStorage.setItem('BrandId', 23);
+			sessionStorage.setItem('cart', JSON.stringify({product}));
+		}
+	};
 	if (!Product) return <div>Loading...</div>;
 	return (
 		<>
@@ -76,23 +110,31 @@ const ProductDetail = () => {
 					<div className="title-4">
 						Colour: <span>{Product.Color}</span>
 						<div className="productInfo__details-size">
-							<button>S</button>
+							<button>{Product.Color}</button>
 						</div>
 					</div>
 					<div className="title-4">
-						Size:<span>M</span>
+						Size:<span>{product.size}</span>
 						<div className="productInfo__details-size">
-							<button>S</button>
-							<button>M</button>
-							<button>L</button>
+							<button onClick={() => setProduct({...product, size: 'S'})}>
+								S
+							</button>
+							<button onClick={() => setProduct({...product, size: 'M'})}>
+								M
+							</button>
+							<button onClick={() => setProduct({...product, size: 'L'})}>
+								L
+							</button>
 						</div>
 					</div>
 					<div className="title-4">
 						Quantity:
 						<div className="productInfo__details-size">
-							<button>S</button>
-							<button>M</button>
-							<button>L</button>
+							<button onClick={onIncrement}>+</button>
+							<p className="mr-10 text-black self-center mt-0 mb-0">
+								{product.quantity}
+							</p>
+							<button onClick={onDecrement}>-</button>
 						</div>
 					</div>
 					<div className="title-4">
@@ -107,6 +149,7 @@ const ProductDetail = () => {
 					<Button
 						variant="contained"
 						classes={{root: 'productInfo__details-button'}}
+						onClick={handleSubmit}
 					>
 						Buy <NavigateNext fontSize="large" />
 					</Button>
@@ -135,7 +178,7 @@ const ProductDetail = () => {
 								</div>
 							}
 						>
-							DESCRIPTIOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOON
+							{Product.Content || Product.Details}
 						</div>
 						<div
 							data-header={
