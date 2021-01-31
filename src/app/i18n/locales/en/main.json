@@ -30,5 +30,19 @@
 	"blankets": "Blankets",
 	"beanies": "Beanies and Hats",
 	"underwear": "Underwear",
-	"cosmetics": "Cosmetics"
+	"cosmetics": "Cosmetics",
+	"product": "PRODUCT",
+	"details": "Details",
+	"fair-working": "Fair working conditions",
+	"environmental-materials": "Environmental materials",
+	"high-quality-material": "High-quality material",
+	"made-in-italy": "Made in Italy",
+	"color": "Color",
+	"size": "Size",
+	"quantity": "Quantity",
+	"delivery-product": "Delivery from",
+	"buy": "Buy",
+	"how-size": "How to choose the right size",
+	"description": "Description",
+	"certificates": "Certificates"
 }

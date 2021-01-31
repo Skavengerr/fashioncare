@@ -11,10 +11,11 @@ import './productDetail.scss';
 import {useHistory} from 'react-router-dom';
 
 const ProductDetail = () => {
-	const {t} = useTranslation('product');
+	const {t} = useTranslation();
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const {Product} = useSelector(state => state.product);
+	const user = useSelector(state => state.user);
 	const [selectedIndex] = useState();
 	const [product, setProduct] = useState({...Product, quantity: 1, size: 'M'});
 
@@ -42,12 +43,13 @@ const ProductDetail = () => {
 		if (product.quantity <= Product.StockAmount) {
 			dispatch(Actions.addToCart(product));
 			setProduct({...product, quantity: 0});
-			sessionStorage.setItem('UserID', 10);
-			sessionStorage.setItem('Username', 'User');
-			sessionStorage.setItem('UserRole', 'UserRole');
-			sessionStorage.setItem('BrandId', 23);
+			sessionStorage.setItem('UserID', user.UserId || 1);
+			sessionStorage.setItem('Username', user.Username || 'User');
+			sessionStorage.setItem('UserRole', user.UserRole || 'UserRole');
+			sessionStorage.setItem('BrandId', user.BrandId || 1);
 			sessionStorage.setItem('cart', JSON.stringify({product}));
-			window.location.href = 'https://fashioncare.ch/Shop/CheckoutProducts';
+			history.push('/Checkout');
+			//window.location.href = 'https://fashioncare.ch/Checkout';
 		}
 	};
 	if (!Product) return <div>Loading...</div>;
@@ -144,7 +146,7 @@ const ProductDetail = () => {
 						</div>
 					</div>
 					<div className="title-4">
-						{t('delivery')}:
+						{t('delivery-product')}:
 						<div className="productInfo__details-size">
 							<p className="productInfo__details-country">
 								{Product.CategoryId === 3 ? 'Igi Natur Germany' : 'Italy'}

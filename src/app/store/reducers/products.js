@@ -9,7 +9,8 @@ const initialState = {
 	alsoLikeProducts: [],
 	product: {},
 	cartQuantity: 0,
-	region: 'EU'
+	region: 'EU',
+	user: null
 };
 
 const Products = function (state = initialState, action) {
@@ -23,6 +24,12 @@ const Products = function (state = initialState, action) {
 				),
 				otherProducts: action.payload,
 				alsoLikeProducts: action.payload
+			};
+		}
+		case Actions.GET_USER: {
+			return {
+				...state,
+				user: action.payload
 			};
 		}
 		case Actions.SEARCH_BY_VALUE: {
@@ -142,7 +149,7 @@ const Products = function (state = initialState, action) {
 		case Actions.ADD_TO_CART: {
 			return {
 				...state,
-				cartQuantity: (state.cartQuantity += action.payload.quantity)
+				cartQuantity: (state.cartQuantity += action.product.quantity)
 			};
 		}
 		case Actions.SEND_EMAIL: {

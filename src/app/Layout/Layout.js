@@ -19,6 +19,7 @@ const Layout = ({children}) => {
 	useEffect(() => {
 		setLoading(true);
 		dispatch(Actions.getRegion());
+		dispatch(Actions.getUser());
 		dispatch(Actions.getProducts()).then(() => setLoading(false));
 	}, []); // eslint-disable-line
 

@@ -6,6 +6,17 @@ class productService {
 			method: 'GET',
 			url: '/API/ProductList'
 		});
+	getUser = () =>
+		axios({
+			method: 'GET',
+			url: '/API/GetUser'
+		});
+	addToCart = product =>
+		axios({
+			method: 'Post',
+			url: '/Shop/AddProductToCart',
+			data: product
+		});
 	getProductById = id =>
 		axios({
 			method: 'GET',

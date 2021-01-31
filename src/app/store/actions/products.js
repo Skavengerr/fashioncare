@@ -11,6 +11,7 @@ export const PRODUCTS_GET = 'PRODUCTS_GET';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REGION_GET = 'REGION_GET';
 export const SEND_EMAIL = 'SEND_EMAIL';
+export const GET_USER = 'GET_USER';
 
 export function getProducts() {
 	return dispatch =>
@@ -18,6 +19,16 @@ export function getProducts() {
 			return dispatch({
 				type: PRODUCTS_GET,
 				payload: res.data.Products
+			});
+		});
+}
+
+export function getUser() {
+	return dispatch =>
+		productService.getUser().then(res => {
+			return dispatch({
+				type: GET_USER,
+				payload: res.data
 			});
 		});
 }
@@ -94,12 +105,15 @@ export function sendEmail(email) {
 			});
 		});
 }
-
 export function addToCart(product) {
-	return {
-		type: ADD_TO_CART,
-		payload: product
-	};
+	return dispatch =>
+		productService.addToCart(product).then(res => {
+			return dispatch({
+				type: ADD_TO_CART,
+				payload: res.data,
+				product: product
+			});
+		});
 }
 
 export function getRegion() {
