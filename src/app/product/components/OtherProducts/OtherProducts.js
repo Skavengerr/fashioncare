@@ -31,25 +31,23 @@ const OtherProducts = () => {
 			array[randomIndex] = temporaryValue;
 		}
 
-		return array;
+		return array.slice(0, 10);
 	}
 
 	return (
 		<div className="other">
 			<p className="other__text">You may also like</p>
 			<div className="other__products">
-				{shuffle(alsoLikeProducts)
-					.slice(0, 10)
-					.map(p => (
-						<Card
-							key={p.ProductId}
-							id={p.ProductId}
-							img={p.Path}
-							title={p.Title}
-							price={p.Price}
-							other
-						/>
-					))}
+				{shuffle(alsoLikeProducts).map(p => (
+					<Card
+						key={p.ProductId}
+						id={p.ProductId}
+						img={p.Path}
+						title={p.Title}
+						price={p.Price}
+						other
+					/>
+				))}
 			</div>
 			<div className="other__video">
 				<iframe

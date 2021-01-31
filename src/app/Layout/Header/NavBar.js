@@ -32,9 +32,9 @@ const NavBar = () => {
 		dispatch(Actions.filterByBrand(brandId));
 	};
 
-	const onFilterByClass = () => {
+	const onFilterByClass = id => {
 		history.push('/home/index2');
-		filterByClass(7);
+		filterByClass(id);
 	};
 
 	const filterByClass = classId => {
@@ -95,14 +95,14 @@ const NavBar = () => {
 									<MenuItem
 										onClick={() => filterByCategoryAndClass(7, 1)}
 									>
-										Jackets and Hoodies
+										{t('jackets')}
 									</MenuItem>
 								</SubMenu>
 								<SubMenu label="Women">
 									<MenuItem
 										onClick={() => filterByCategoryAndClass(7, 2)}
 									>
-										Jackets and Hoodies
+										{t('jackets')}
 									</MenuItem>
 								</SubMenu>
 								<SubMenu label="Kids">
@@ -113,7 +113,7 @@ const NavBar = () => {
 												filterByCategoryAndClass(el.id, 3)
 											}
 										>
-											{el.title}
+											{t(el.title)}
 										</MenuItem>
 									))}
 								</SubMenu>
@@ -142,21 +142,21 @@ const NavBar = () => {
 								))}
 							</ControlledMenu>
 						</>
-						<p onClick={() => onFilterByClass(7)}>Jackets and hoodies</p>
+						<p onClick={() => onFilterByClass(7)}>{t('jackets')}</p>
 						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(11)}>Bodies and Onesies</p>
+							<p onClick={() => onFilterByClass(11)}>{t('bodies')}</p>
 						)}
 						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(1)}>T-Shirts</p>
+							<p onClick={() => onFilterByClass(1)}>{t('tops')}</p>
 						)}
 						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(5)}>Dresses</p>
+							<p onClick={() => onFilterByClass(5)}>{t('dresses')}</p>
 						)}
 						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(4)}>Shorts</p>
+							<p onClick={() => onFilterByClass(4)}>{t('shorts')}</p>
 						)}
 						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(9)}>Leggings</p>
+							<p onClick={() => onFilterByClass(9)}>{t('leggins')}</p>
 						)}
 						<Hidden lgUp>
 							<p>{t('delivery')}</p>

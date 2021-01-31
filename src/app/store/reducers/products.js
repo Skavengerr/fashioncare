@@ -50,7 +50,10 @@ const Products = function (state = initialState, action) {
 		case Actions.PRODUCT_GET_BY_ID: {
 			return {
 				...state,
-				product: action.payload
+				product: action.payload,
+				alsoLikeProducts: state.otherProducts.filter(
+					p => p.CategoryId === state.category_id
+				)
 			};
 		}
 		case Actions.FILTER_BY_CATEGORY: {
@@ -58,19 +61,10 @@ const Products = function (state = initialState, action) {
 				...state,
 				category_id: action.payload.id,
 				products: state.otherProducts.filter(
-					p =>
-						p.CategoryId === action.payload.id &&
-						(state.class_id
-							? p.ProductClassId === state.class_id
-							: p.ProductClassId > 0)
+					p => p.CategoryId === action.payload.id
 				),
 				winterProducts: state.otherProducts.filter(
-					p =>
-						p.CategoryId === action.payload.id &&
-						p.SeasonId === 1 &&
-						(state.class_id
-							? p.ProductClassId === state.class_id
-							: p.ProductClassId > 0)
+					p => p.CategoryId === action.payload.id && p.SeasonId === 1
 				)
 			};
 		}

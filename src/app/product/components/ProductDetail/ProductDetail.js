@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Button, Divider} from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux';
 import {Menu, Bookmarks, NavigateNext} from '@material-ui/icons';
+import {useTranslation} from 'react-i18next';
 
 import {CATEGORY, PRODUCT_CLASSES} from '../../../constants';
 import * as Actions from '../../../store/actions/products';
@@ -9,6 +10,7 @@ import Accordion from './Accordion';
 import './productDetail.scss';
 
 const ProductDetail = () => {
+	const {t} = useTranslation('product');
 	const dispatch = useDispatch();
 	const {Product} = useSelector(state => state.product);
 	const [selectedIndex] = useState();
@@ -51,7 +53,7 @@ const ProductDetail = () => {
 			<div className="appBar">
 				<div className="appBar-product">
 					<Menu fontSize="large" />
-					<div>PRODUCT</div>
+					<div>{t('product')}</div>
 				</div>
 				<div className="appBar-product appBar-product-avatar">3D Avatar</div>
 			</div>
@@ -72,7 +74,7 @@ const ProductDetail = () => {
 					</p>
 				</div>
 				<Divider />
-				<p className="title-4">Details</p>
+				<p className="title-4">{t('details')}</p>
 				<div className="productInfo__details">
 					<div className="productInfo__details-item">
 						<img
@@ -80,7 +82,7 @@ const ProductDetail = () => {
 							src="/icons/product/detail_1.svg"
 							className="productInfo__details-img"
 						/>
-						Fair working conditions
+						{t('fair-working')}
 					</div>
 					<div className="productInfo__details-item">
 						<img
@@ -88,7 +90,7 @@ const ProductDetail = () => {
 							src="/icons/product/detail_2.svg"
 							className="productInfo__details-img"
 						/>
-						Environmental materials
+						{t('environmental-materials')}
 					</div>
 					<div className="productInfo__details-item">
 						<img
@@ -96,7 +98,7 @@ const ProductDetail = () => {
 							src="/icons/product/detail_3.svg"
 							className="productInfo__details-img"
 						/>
-						High-quality material
+						{t('high-quality-material')}
 					</div>
 					<div className="productInfo__details-item">
 						<img
@@ -104,18 +106,18 @@ const ProductDetail = () => {
 							src="/icons/product/detail_4.svg"
 							className="productInfo__details-img"
 						/>
-						Made in Italy
+						{t('made-in-italy')}
 					</div>
 				</div>
 				<div className="productInfo__details">
 					<div className="title-4">
-						Colour: <span>{Product.Color}</span>
+						{t('color')}: <span>{Product.Color}</span>
 						<div className="productInfo__details-size">
 							<button>{Product.Color}</button>
 						</div>
 					</div>
 					<div className="title-4">
-						Size:<span>{product.size}</span>
+						{t('size')}:<span>{product.size}</span>
 						<div className="productInfo__details-size">
 							<button onClick={() => setProduct({...product, size: 'S'})}>
 								S
@@ -129,7 +131,7 @@ const ProductDetail = () => {
 						</div>
 					</div>
 					<div className="title-4">
-						Quantity:
+						{t('quantity')}:
 						<div className="productInfo__details-size">
 							<button onClick={onIncrement}>+</button>
 							<p className="mr-10 text-black self-center mt-0 mb-0">
@@ -139,7 +141,7 @@ const ProductDetail = () => {
 						</div>
 					</div>
 					<div className="title-4">
-						Delivery from:
+						{t('delivery')}:
 						<div className="productInfo__details-size">
 							<p className="productInfo__details-country">
 								{Product.CategoryId === 3 ? 'Igi Natur Germany' : 'Italy'}
@@ -154,7 +156,7 @@ const ProductDetail = () => {
 						classes={{root: 'productInfo__details-button'}}
 						onClick={handleSubmit}
 					>
-						Buy <NavigateNext fontSize="large" />
+						{t('buy')} <NavigateNext fontSize="large" />
 					</Button>
 					<img alt="" src="/icons/product/heart.svg" />
 				</div>
@@ -166,7 +168,7 @@ const ProductDetail = () => {
 						className="productInfo__description-el"
 					>
 						<img alt="" src="/icons/product/plus.svg" className="mr-10" />
-						<p>How to choose the right size</p>
+						<p>{t('how-size')}</p>
 					</a>
 					<Accordion className="accordion" selectedIndex={selectedIndex}>
 						<div
@@ -177,7 +179,7 @@ const ProductDetail = () => {
 										src="/icons/product/plus.svg"
 										className="mr-10"
 									/>
-									<p>Description</p>
+									<p>{t('description')}</p>
 								</div>
 							}
 						>
@@ -191,7 +193,7 @@ const ProductDetail = () => {
 										src="/icons/product/plus.svg"
 										className="mr-10"
 									/>
-									<p>Certificates</p>
+									<p>{t('certificates')}</p>
 								</div>
 							}
 							className="accordion-item"

@@ -1,20 +1,20 @@
 export const CATEGORY = ['Men', 'Women', 'Kids'];
 export const PRODUCT_CLASSES = [
-	{id: 1, title: 'Tops \u0026 T-Shirts'},
-	{id: 7, title: 'Jackets \u0026 Hoodies'},
-	{id: 3, title: 'Skirts'},
-	{id: 4, title: 'Shorts'},
-	{id: 5, title: 'Dresses'},
-	{id: 11, title: 'Bodies \u0026 Onesies'},
-	{id: 9, title: 'Leggings'},
-	{id: 8, title: 'Trousers \u0026 Pants'},
-	{id: 10, title: 'Sweatshirts'},
-	{id: 14, title: 'Ponchos'},
-	{id: 15, title: 'Sleeping bags'},
-	{id: 2, title: 'Blankets'},
-	{id: 12, title: 'Beanies \u0026 Hats'},
-	{id: 6, title: 'Underwear'},
-	{id: 13, title: 'Cosmetics'}
+	{id: 1, title: 'tops'},
+	{id: 7, title: 'jackets'},
+	{id: 3, title: 'skirts'},
+	{id: 4, title: 'shorts'},
+	{id: 5, title: 'dresses'},
+	{id: 11, title: 'bodies'},
+	{id: 9, title: 'leggings'},
+	{id: 8, title: 'trousers'},
+	{id: 10, title: 'sweatshirts'},
+	{id: 14, title: 'ponchos'},
+	{id: 15, title: 'sleeping-bags'},
+	{id: 2, title: 'blankets'},
+	{id: 12, title: 'beanies'},
+	{id: 6, title: 'underwear'},
+	{id: 13, title: 'cosmetics'}
 ];
 
 export const BRANDS = [

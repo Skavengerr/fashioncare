@@ -83,7 +83,7 @@ const Menu = () => {
 				</a>
 				<Badge badgeContent={cartQuantity} color="primary">
 					<a
-						href="https://fashioncare.ch/Shop/Checkout"
+						href="https://fashioncare.ch/Shop/CheckoutProducts"
 						className="header__menu-actions-icon"
 					>
 						<ShoppingBasketOutlined
