@@ -45,6 +45,11 @@ const NavBar = () => {
 		setBrandOpen(false);
 	};
 
+	const toggleSearch = () => {
+		dispatch(Actions.searchByValue(value.current.value));
+		value.current.value = '';
+	};
+
 	return (
 		<>
 			<div>
@@ -171,12 +176,12 @@ const NavBar = () => {
 								/>
 
 								<button
-									style={{background: '#2796FF', border: 'none'}}
-									onClick={() =>
-										dispatch(
-											Actions.searchByValue(value.current.value)
-										)
-									}
+									style={{
+										background: '#2796FF',
+										border: 'none',
+										cursor: 'pointer'
+									}}
+									onClick={toggleSearch}
 								>
 									<SearchIcon style={{color: '#fff'}} />
 								</button>

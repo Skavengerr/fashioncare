@@ -28,9 +28,10 @@ const Products = function (state = initialState, action) {
 		case Actions.SEARCH_BY_VALUE: {
 			return {
 				...state,
+				category_id: action.payload[0].CategoryId,
 				products: action.payload.filter(
 					p =>
-						p.CategoryId === state.category_id &&
+						p.CategoryId === action.payload[0].CategoryId &&
 						(state.class_id
 							? p.ProductClassId === state.class_id
 							: p.ProductClassId > 0)
@@ -43,7 +44,7 @@ const Products = function (state = initialState, action) {
 							? p.ProductClassId === state.class_id
 							: p.ProductClassId > 0)
 				),
-				otherProducts: action.payload
+				alsoLikeProducts: action.payload
 			};
 		}
 		case Actions.PRODUCT_GET_BY_ID: {
