@@ -16,6 +16,12 @@ const OtherProducts = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		dispatch(Actions.sendEmail(email.current.value));
+		window.open(
+			`https://fashioncare.ch/API/SendCatalogFile?name=${
+				category_id === 3 ? '' : 'zero'
+			}`,
+			'_blank'
+		);
 	};
 
 	function shuffle(array) {
