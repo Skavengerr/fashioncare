@@ -8,9 +8,11 @@ import {CATEGORY, PRODUCT_CLASSES} from '../../../constants';
 import * as Actions from '../../../store/actions/products';
 import Accordion from './Accordion';
 import './productDetail.scss';
+import {useHistory} from 'react-router-dom';
 
 const ProductDetail = () => {
 	const {t} = useTranslation('product');
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const {Product} = useSelector(state => state.product);
 	const [selectedIndex] = useState();
@@ -45,6 +47,7 @@ const ProductDetail = () => {
 			sessionStorage.setItem('UserRole', 'UserRole');
 			sessionStorage.setItem('BrandId', 23);
 			sessionStorage.setItem('cart', JSON.stringify({product}));
+			window.location.href = 'https://fashioncare.ch/Shop/CheckoutProducts';
 		}
 	};
 	if (!Product) return <div>Loading...</div>;

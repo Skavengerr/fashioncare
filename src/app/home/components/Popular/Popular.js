@@ -3,9 +3,9 @@ import {Typography} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 import ElasticCarousel, {consts} from 'react-elastic-carousel';
 
-import Card from '../Card';
-
 import './popular.scss';
+
+const Card = React.lazy(() => import('../Card'));
 
 const breakPoints = [
 	{width: 1, itemsToShow: 1},

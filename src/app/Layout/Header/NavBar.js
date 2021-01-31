@@ -76,7 +76,13 @@ const NavBar = () => {
 					</div>
 
 					<div className="nav-links">
-						<p className="text-bold">{t('services')}</p>
+						<a
+							href="https://fashioncare.ch/Home/Services"
+							className="nav__menu-button"
+							style={{textDecoration: 'none'}}
+						>
+							{t('services')}
+						</a>
 						<>
 							<button
 								ref={ref}

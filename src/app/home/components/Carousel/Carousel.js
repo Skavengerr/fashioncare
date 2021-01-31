@@ -1,9 +1,10 @@
 import React from 'react';
 import ElasticCarousel, {consts} from 'react-elastic-carousel';
 import {useSelector} from 'react-redux';
-import Card from '../Card';
 
 import './carousel.scss';
+
+const Card = React.lazy(() => import('../Card'));
 
 const breakPoints = [
 	{width: 1, itemsToShow: 1},
@@ -41,7 +42,7 @@ function Carousel() {
 					pagination={false}
 				>
 					{products.length >= 5
-						? subarray.map((arr, index) => (
+						? subarray.slice(0, 40).map((arr, index) => (
 								<div key={index}>
 									{arr.map(p => (
 										<div key={p.ProductId} className="carousel__grid">

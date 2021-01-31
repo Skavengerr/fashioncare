@@ -1,16 +1,16 @@
 import React from 'react';
 import {Divider, Hidden} from '@material-ui/core';
 import {useSelector} from 'react-redux';
-
-import YouTubeVideos from './components/YouTubeVideos';
-import Instagram from './components/Instagram';
-import Carousel from './components/Carousel';
-import Category from './components/Category';
-import Popular from './components/Popular';
-import Info from './components/Info/Info';
-import Eco from './components/Eco/Eco';
+// import Category from './components/Category';
 
 import './home.scss';
+
+const YouTubeVideos = React.lazy(() => import('./components/YouTubeVideos'));
+const Instagram = React.lazy(() => import('./components/Instagram'));
+const Carousel = React.lazy(() => import('./components/Carousel'));
+const Popular = React.lazy(() => import('./components/Popular'));
+const Info = React.lazy(() => import('./components/Info'));
+const Eco = React.lazy(() => import('./components/Eco'));
 
 const Home = () => {
 	const {category_id} = useSelector(state => state);

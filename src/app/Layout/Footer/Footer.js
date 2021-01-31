@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Divider} from '@material-ui/core';
 import {Social} from '../Header/TopHeader';
 import TextField from '@material-ui/core/TextField';
+import LazyLoad from 'react-lazyload';
 
 import './footer.scss';
 
@@ -11,7 +12,9 @@ const Footer = () => {
 			<div className="footer__info">
 				<div className="footer__info-left">
 					<div className="footer__info-left-support">
-						<img alt="footer-images" src="/icons/product/logo.svg" />
+						<LazyLoad once>
+							<img alt="footer-images" src="/icons/product/logo.svg" />
+						</LazyLoad>
 					</div>
 					<div className="footer__info-left-support">
 						<h3 className="footer-h3">Support</h3>

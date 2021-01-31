@@ -3,11 +3,11 @@ import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 import * as Actions from '../store/actions/products';
-import Loading from '../Layout/Loading';
 import Breadcrumb from './components/Breadcumb';
 
 import './product.scss';
 
+const Loading = React.lazy(() => import('../Layout/Loading'));
 const OtherProducts = React.lazy(() => import('./components/OtherProducts'));
 const ProductCarousel = React.lazy(() => import('./components/ProductCarousel'));
 

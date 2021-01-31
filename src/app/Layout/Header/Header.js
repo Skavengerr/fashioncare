@@ -1,11 +1,11 @@
 import React from 'react';
 import {Hidden} from '@material-ui/core';
 
-import TopHeader from './TopHeader';
-import NavBar from './NavBar';
-import Menu from './Menu';
-
 import './header.scss';
+
+const TopHeader = React.lazy(() => import('./TopHeader'));
+const NavBar = React.lazy(() => import('./NavBar'));
+const Menu = React.lazy(() => import('./Menu'));
 
 const Header = () => {
 	return (

@@ -1,6 +1,6 @@
-import {Divider} from '@material-ui/core';
 import React from 'react';
 import {useInstagramFeed} from 'use-instagram-feed';
+import LazyLoad from 'react-lazyload';
 
 import './instagram.scss';
 
@@ -14,9 +14,11 @@ const Instagram = () => {
 	return (
 		<div className="inst">
 			<div className="inst__box">
-				<img alt="" src="/icons/home/followus.jpg" />
+				<LazyLoad once>
+					<img alt="" src="/icons/home/followus.jpg" />
+				</LazyLoad>
 			</div>
-			<div>
+			<LazyLoad once>
 				{photos &&
 					photos.map(({id, caption, src, width, height, url}) => (
 						<a
@@ -29,7 +31,7 @@ const Instagram = () => {
 							<img src={src} alt={caption} />
 						</a>
 					))}
-			</div>
+			</LazyLoad>
 		</div>
 	);
 };
