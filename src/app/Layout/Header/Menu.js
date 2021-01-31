@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import {withNamespaces} from 'react-i18next';
-import i18n from '../../i18n';
+import {useTranslation} from 'react-i18next';
 
 import {Hidden, Badge, IconButton} from '@material-ui/core';
 import {AccountCircleOutlined, ShoppingBasketOutlined, Public} from '@material-ui/icons';
@@ -17,7 +16,8 @@ const CATEGORIES = [
 	{id: 3, title: 'Kids'}
 ];
 
-const Menu = ({t}) => {
+const Menu = () => {
+	const {t, i18n} = useTranslation('main');
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const {category_id, region, cartQuantity} = useSelector(state => state);
@@ -63,7 +63,7 @@ const Menu = ({t}) => {
 								size="medium"
 								className="header__menu-actions-icon ml-12"
 							>
-								<div className="mx-12">ENG</div>
+								<div className="mx-12">{i18n.language.toUpperCase()}</div>
 							</IconButton>
 						</MenuButton>
 					}
@@ -97,4 +97,4 @@ const Menu = ({t}) => {
 	);
 };
 
-export default withNamespaces()(Menu);
+export default Menu;

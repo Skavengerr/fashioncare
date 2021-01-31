@@ -1,6 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {ControlledMenu, MenuItem, SubMenu} from '@szhsin/react-menu';
-import {withNamespaces} from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import '@szhsin/react-menu/dist/index.css';
 import {Hidden} from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,7 +11,8 @@ import * as Actions from '../../store/actions/products';
 import {PRODUCT_CLASSES, BRANDS} from '../../constants';
 import './nav.scss';
 
-const NavBar = ({t}) => {
+const NavBar = () => {
+	const {t} = useTranslation('main');
 	const dispatch = useDispatch();
 	let history = useHistory();
 	const ref = useRef(null);
@@ -229,4 +230,4 @@ const NavBar = ({t}) => {
 	);
 };
 
-export default withNamespaces()(NavBar);
+export default NavBar;

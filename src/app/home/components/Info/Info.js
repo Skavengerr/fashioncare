@@ -1,5 +1,5 @@
 import React from 'react';
-import {withNamespaces} from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 import './info.scss';
 
@@ -20,7 +20,8 @@ const IMAGES = [
 	{id: 6, title: 'our-technologies', link: 'https://fashioncare.ch/Home/Technologies'}
 ];
 
-const Info = ({t}) => {
+const Info = () => {
+	const {t} = useTranslation('main');
 	return (
 		<div className="info">
 			{IMAGES.map(el => (
@@ -35,4 +36,4 @@ const Info = ({t}) => {
 	);
 };
 
-export default withNamespaces()(Info);
+export default Info;
