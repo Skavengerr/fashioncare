@@ -37,7 +37,7 @@ const Home = () => {
 						<Carousel />
 					</div>
 					<Info />
-					<Category />
+					{/*<Category />*/}
 					<Divider classes={{root: 'main__category-divider'}} />
 					<Popular />
 					<Eco />

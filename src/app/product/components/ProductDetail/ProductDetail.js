@@ -142,7 +142,7 @@ const ProductDetail = () => {
 						Delivery from:
 						<div className="productInfo__details-size">
 							<p className="productInfo__details-country">
-								Igi Natur Germany{' '}
+								{Product.CategoryId === 3 ? 'Igi Natur Germany' : 'Italy'}
 							</p>
 						</div>
 					</div>

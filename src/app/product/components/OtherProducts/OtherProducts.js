@@ -9,7 +9,7 @@ import * as Actions from '../../../store/actions/products';
 import './otherProducts.scss';
 
 const OtherProducts = () => {
-	const {alsoLikeProducts} = useSelector(state => state);
+	const {alsoLikeProducts, category_id} = useSelector(state => state);
 	const dispatch = useDispatch();
 	const email = useRef();
 
@@ -54,7 +54,11 @@ const OtherProducts = () => {
 			<div className="other__video">
 				<iframe
 					title="New sustainable brand"
-					src="https://www.youtube.com/embed/-WFXo43ks7c"
+					src={
+						category_id === 3
+							? 'https://www.youtube.com/embed/QLEaSOTrGQk'
+							: 'https://www.youtube.com/embed/-WFXo43ks7c'
+					}
 					allowFullScreen
 					frameBorder="0"
 				/>
