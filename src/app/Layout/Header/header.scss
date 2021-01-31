@@ -155,6 +155,11 @@
 	}
 }
 
+.rc-menu-button {
+	background: transparent;
+	border: none;
+}
+
 @media screen and (max-width: 1280px) {
 	.header {
 		&-b {

@@ -1,8 +1,12 @@
 import React from 'react';
 import {Link, useHistory} from 'react-router-dom';
+import {withNamespaces} from 'react-i18next';
+import i18n from '../../i18n';
 
 import {Hidden, Badge, IconButton} from '@material-ui/core';
 import {AccountCircleOutlined, ShoppingBasketOutlined, Public} from '@material-ui/icons';
+import {Menu as ReactMenu, MenuItem, MenuButton} from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
 
 import {useDispatch, useSelector} from 'react-redux';
 import * as Actions from '../../store/actions/products';
@@ -13,7 +17,7 @@ const CATEGORIES = [
 	{id: 3, title: 'Kids'}
 ];
 
-const Menu = () => {
+const Menu = ({t}) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const {category_id, region, cartQuantity} = useSelector(state => state);
@@ -21,6 +25,10 @@ const Menu = () => {
 	const changeCategory = id => {
 		history.push('/home/index2');
 		dispatch(Actions.filterByCategory(id));
+	};
+
+	const changeLanguage = lng => {
+		i18n.changeLanguage(lng);
 	};
 
 	return (
@@ -38,7 +46,7 @@ const Menu = () => {
 						onClick={() => changeCategory(el.id)}
 						className={category_id === el.id ? 'header-b-active' : 'header-b'}
 					>
-						{el.title}
+						{t(el.title.toLocaleLowerCase())}
 					</button>
 				))}
 			</div>
@@ -48,9 +56,21 @@ const Menu = () => {
 					<Public />
 					<p>{region}</p>
 				</IconButton>
-				<IconButton size="medium" className="header__menu-actions-icon ml-12">
-					<div className="mx-12">ENG</div>
-				</IconButton>
+				<ReactMenu
+					menuButton={
+						<MenuButton style={{background: 'transparent', border: 'none'}}>
+							<IconButton
+								size="medium"
+								className="header__menu-actions-icon ml-12"
+							>
+								<div className="mx-12">ENG</div>
+							</IconButton>
+						</MenuButton>
+					}
+				>
+					<MenuItem onClick={() => changeLanguage('en')}>ENG</MenuItem>
+					<MenuItem onClick={() => changeLanguage('de')}>DE</MenuItem>
+				</ReactMenu>
 				<IconButton size="medium" className="header__menu-actions-icon ml-12">
 					<div className="mx-12">CHF</div>
 				</IconButton>
@@ -77,4 +97,4 @@ const Menu = () => {
 	);
 };
 
-export default Menu;
+export default withNamespaces()(Menu);

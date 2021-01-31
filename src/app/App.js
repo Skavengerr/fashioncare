@@ -10,6 +10,7 @@ import CookieBanner from './Layout/CookieBanner/CookieBanner';
 import rootReducer from './store/reducers/products';
 import Loading from './Layout/Loading';
 import Layout from './Layout';
+import './i18n';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 

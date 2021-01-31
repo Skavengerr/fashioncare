@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {ControlledMenu, MenuItem, SubMenu} from '@szhsin/react-menu';
+import {withNamespaces} from 'react-i18next';
 import '@szhsin/react-menu/dist/index.css';
 import {Hidden} from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux';
@@ -10,7 +11,7 @@ import * as Actions from '../../store/actions/products';
 import {PRODUCT_CLASSES, BRANDS} from '../../constants';
 import './nav.scss';
 
-const NavBar = () => {
+const NavBar = ({t}) => {
 	const dispatch = useDispatch();
 	let history = useHistory();
 	const ref = useRef(null);
@@ -74,14 +75,14 @@ const NavBar = () => {
 					</div>
 
 					<div className="nav-links">
-						<p className="text-bold">Services</p>
+						<p className="text-bold">{t('services')}</p>
 						<>
 							<button
 								ref={ref}
 								className="nav__menu-button"
 								onMouseEnter={() => setOpen(true)}
 							>
-								Shop
+								{t('shop')}
 							</button>
 
 							<ControlledMenu
@@ -123,7 +124,7 @@ const NavBar = () => {
 								className="nav__menu-button"
 								onMouseEnter={() => setBrandOpen(true)}
 							>
-								Brands
+								{t('brands')}
 							</button>
 							<ControlledMenu
 								anchorRef={brandRef}
@@ -157,11 +158,11 @@ const NavBar = () => {
 							<p onClick={() => onFilterByClass(9)}>Leggings</p>
 						)}
 						<Hidden lgUp>
-							<p>Delivery</p>
-							<p>Submit a return</p>
-							<p>Packaging</p>
-							<p>Contact us</p>
-							<p>FAQ</p>
+							<p>{t('delivery')}</p>
+							<p>{t('submit-return')}</p>
+							<p>{t('packaging')}</p>
+							<p>{t('contact-us')}</p>
+							<p>{t('faq')}</p>
 						</Hidden>
 						<Hidden mdDown className="ml-20">
 							<div className="flex">
@@ -196,31 +197,31 @@ const NavBar = () => {
 						href="https://fashioncare.ch/Home/Delivery"
 						className="header__static-el"
 					>
-						Delivery
+						{t('delivery')}
 					</a>
 					<a
 						href="https://fashioncare.ch/Home/SubmitReturn"
 						className="header__static-el"
 					>
-						Submit and return
+						{t('submit-return')}
 					</a>
 					<a
 						href="https://fashioncare.ch/Home/Packaging"
 						className="header__static-el"
 					>
-						Packaging
+						{t('packaging')}
 					</a>
 					<a
 						href="https://fashioncare.ch/Home/ContactUs"
 						className="header__static-el"
 					>
-						Contact us
+						{t('contact-us')}
 					</a>
 					<a
 						href="https://fashioncare.ch/Home/FAQ"
 						className="header__static-el"
 					>
-						FAQ
+						{t('faq')}
 					</a>
 				</div>
 			</Hidden>
@@ -228,4 +229,4 @@ const NavBar = () => {
 	);
 };
 
-export default NavBar;
+export default withNamespaces()(NavBar);
