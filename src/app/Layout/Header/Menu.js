@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 import {Hidden, Badge, IconButton} from '@material-ui/core';
 import {AccountCircleOutlined, ShoppingBasketOutlined, Public} from '@material-ui/icons';
@@ -14,10 +14,12 @@ const CATEGORIES = [
 ];
 
 const Menu = () => {
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const {category_id, region, cartQuantity} = useSelector(state => state);
 
 	const changeCategory = id => {
+		history.push('/home/index2');
 		dispatch(Actions.filterByCategory(id));
 	};
 
