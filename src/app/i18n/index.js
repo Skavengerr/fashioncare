@@ -10,7 +10,7 @@ const options = {
 		escapeValue: false
 	},
 
-	debug: false,
+	debug: true,
 
 	// set default language
 	lng: 'en',
