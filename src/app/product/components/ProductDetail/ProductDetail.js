@@ -44,8 +44,8 @@ const ProductDetail = () => {
 		}
 	};
 
-	const onChangeSize = () => {
-		setProduct({...product, size: 'S'});
+	const onChangeSize = s => {
+		setProduct({...product, size: s});
 		setValidSize(true);
 	};
 
@@ -141,9 +141,9 @@ const ProductDetail = () => {
 					<div className={!isValidSize ? 'title-4 title-4-error' : 'title-4'}>
 						{t('size')}:<span>{product.size}</span>
 						<div className="productInfo__details-size">
-							<button onClick={onChangeSize}>S</button>
-							<button onClick={onChangeSize}>M</button>
-							<button onClick={onChangeSize}>L</button>
+							<button onClick={() => onChangeSize('S')}>S</button>
+							<button onClick={() => onChangeSize('M')}>M</button>
+							<button onClick={() => onChangeSize('L')}>L</button>
 						</div>
 					</div>
 					<div
