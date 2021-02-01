@@ -13,7 +13,7 @@ const options = {
 	debug: false,
 
 	// set default language
-	lng: 'de',
+	lng: 'en',
 
 	whitelist: ['en', 'de', 'fr'],
 
