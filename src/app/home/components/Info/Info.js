@@ -26,7 +26,7 @@ const Info = () => {
 		<div className="info">
 			{IMAGES.map(el => (
 				<div key={el.title} className="info-el">
-					<a rel="noreferrer" target="_blank" href={el.link}>
+					<a href={el.link}>
 						<img alt="" src={`/icons/home/info_${el.id}.svg`} />
 						<p>{t(el.title)}</p>
 					</a>
