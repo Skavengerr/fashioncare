@@ -44,5 +44,6 @@
 	"buy": "Buy",
 	"how-size": "How to choose the right size",
 	"description": "Description",
-	"certificates": "Certificates"
+	"certificates": "Certificates",
+	"error-valid": "You need to fill in all the fields first"
 }

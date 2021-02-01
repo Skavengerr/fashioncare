@@ -44,5 +44,6 @@
 	"buy": "Acheter",
 	"how-size": "Comment choisir la bonne taille",
 	"description": "Description",
-	"certificates": "Certificats"
+	"certificates": "Certificats",
+	"error-valid": "Vous devez d'abord remplir tous les champs"
 }

@@ -29,6 +29,11 @@
 	padding: 2rem;
 	@extend .font;
 
+	&__error {
+		color: red;
+		transition: color 500ms linear;
+	}
+
 	&__description {
 		margin: 1rem 0;
 		align-items: center;
@@ -140,6 +145,11 @@
 		color: #15d0ff;
 		padding: 1rem 0;
 		width: 25%;
+
+		&-error {
+			color: red;
+			transition: color 500ms linear;
+		}
 
 		span {
 			color: #a3a6a5;

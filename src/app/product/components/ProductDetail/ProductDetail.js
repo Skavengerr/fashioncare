@@ -11,13 +11,14 @@ import './productDetail.scss';
 import {useHistory} from 'react-router-dom';
 
 const ProductDetail = () => {
-	const {t} = useTranslation();
+	const {t} = useTranslation('main');
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const {Product} = useSelector(state => state.product);
 	const user = useSelector(state => state.user);
 	const [selectedIndex] = useState();
-	const [product, setProduct] = useState({...Product, quantity: 1, size: 'M'});
+	const [isValid, setValid] = useState(true);
+	const [product, setProduct] = useState({...Product, quantity: 0, size: ''});
 
 	const onIncrement = () => {
 		if (product.quantity <= Product.StockAmount) {
@@ -40,7 +41,9 @@ const ProductDetail = () => {
 	};
 
 	const handleSubmit = () => {
-		if (product.quantity <= Product.StockAmount) {
+		if (product.quantity === 0 || product.size === '') {
+			setValid(false);
+		} else if (product.quantity <= Product.StockAmount) {
 			dispatch(Actions.addToCart(product));
 			setProduct({...product, quantity: 0});
 			sessionStorage.setItem('UserID', user.UserId || 1);
@@ -121,7 +124,7 @@ const ProductDetail = () => {
 							<button>{Product.Color}</button>
 						</div>
 					</div>
-					<div className="title-4">
+					<div className={!isValid ? 'title-4 title-4-error' : 'title-4'}>
 						{t('size')}:<span>{product.size}</span>
 						<div className="productInfo__details-size">
 							<button onClick={() => setProduct({...product, size: 'S'})}>
@@ -135,7 +138,7 @@ const ProductDetail = () => {
 							</button>
 						</div>
 					</div>
-					<div className="title-4">
+					<div className={!isValid ? 'title-4 title-4-error' : 'title-4'}>
 						{t('quantity')}:
 						<div className="productInfo__details-size">
 							<button onClick={onIncrement}>+</button>
@@ -155,6 +158,7 @@ const ProductDetail = () => {
 					</div>
 				</div>
 
+				{!isValid && <p className="productInfo__error">{t('error-valid')}</p>}
 				<div className="flex">
 					<Button
 						variant="contained"
