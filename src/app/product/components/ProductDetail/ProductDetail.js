@@ -17,10 +17,12 @@ const ProductDetail = () => {
 	const {Product} = useSelector(state => state.product);
 	const user = useSelector(state => state.user);
 	const [selectedIndex] = useState();
-	const [isValid, setValid] = useState(true);
+	const [isValidQuantity, setValidQuantity] = useState(true);
+	const [isValidSize, setValidSize] = useState(true);
 	const [product, setProduct] = useState({...Product, quantity: 0, size: ''});
 
 	const onIncrement = () => {
+		setValidQuantity(true);
 		if (product.quantity <= Product.StockAmount) {
 			setProduct({
 				...product,
@@ -37,12 +39,24 @@ const ProductDetail = () => {
 				...product,
 				quantity: (product.quantity -= 1)
 			});
+		} else {
+			setValidQuantity(false);
 		}
 	};
 
+	const onChangeSize = () => {
+		setProduct({...product, size: 'S'});
+		setValidSize(true);
+	};
+
 	const handleSubmit = () => {
-		if (product.quantity === 0 || product.size === '') {
-			setValid(false);
+		if (product.quantity === 0 && product.size === '') {
+			setValidQuantity(false);
+			setValidSize(false);
+		} else if (product.quantity === 0) {
+			setValidQuantity(false);
+		} else if (product.size === '') {
+			setValidSize(false);
 		} else if (product.quantity <= Product.StockAmount) {
 			dispatch(Actions.addToCart(product));
 			setProduct({...product, quantity: 0});
@@ -124,21 +138,17 @@ const ProductDetail = () => {
 							<button>{Product.Color}</button>
 						</div>
 					</div>
-					<div className={!isValid ? 'title-4 title-4-error' : 'title-4'}>
+					<div className={!isValidSize ? 'title-4 title-4-error' : 'title-4'}>
 						{t('size')}:<span>{product.size}</span>
 						<div className="productInfo__details-size">
-							<button onClick={() => setProduct({...product, size: 'S'})}>
-								S
-							</button>
-							<button onClick={() => setProduct({...product, size: 'M'})}>
-								M
-							</button>
-							<button onClick={() => setProduct({...product, size: 'L'})}>
-								L
-							</button>
+							<button onClick={onChangeSize}>S</button>
+							<button onClick={onChangeSize}>M</button>
+							<button onClick={onChangeSize}>L</button>
 						</div>
 					</div>
-					<div className={!isValid ? 'title-4 title-4-error' : 'title-4'}>
+					<div
+						className={!isValidQuantity ? 'title-4 title-4-error' : 'title-4'}
+					>
 						{t('quantity')}:
 						<div className="productInfo__details-size">
 							<button onClick={onIncrement}>+</button>
@@ -158,7 +168,9 @@ const ProductDetail = () => {
 					</div>
 				</div>
 
-				{!isValid && <p className="productInfo__error">{t('error-valid')}</p>}
+				{(!isValidQuantity || !isValidSize) && (
+					<p className="productInfo__error">{t('error-valid')}</p>
+				)}
 				<div className="flex">
 					<Button
 						variant="contained"
