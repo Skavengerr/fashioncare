@@ -20,7 +20,7 @@ const Menu = () => {
 	const {t, i18n} = useTranslation('main');
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const {category_id, region, cartQuantity} = useSelector(state => state);
+	const {category_id, region, cartQuantity, user} = useSelector(state => state);
 
 	const changeCategory = id => {
 		history.push('/home/index2');
@@ -52,18 +52,18 @@ const Menu = () => {
 			</div>
 
 			<div className="header__menu-actions">
-				<IconButton size="medium" className="header__menu-actions-icon ml-12">
+				<IconButton size="medium" className="header__menu-actions-icon">
 					<Public />
 					<p>{region}</p>
 				</IconButton>
 				<ReactMenu
 					menuButton={
-						<MenuButton style={{background: 'transparent', border: 'none'}}>
-							<IconButton
-								size="medium"
-								className="header__menu-actions-icon ml-12"
-							>
-								<div className="mx-12">{i18n.language.toUpperCase()}</div>
+						<MenuButton
+							className="header__menu-actions-icon"
+							style={{background: 'transparent', border: 'none'}}
+						>
+							<IconButton size="medium" className="m-auto text-white">
+								<div>{i18n.language.toUpperCase()}</div>
 							</IconButton>
 						</MenuButton>
 					}
@@ -72,20 +72,26 @@ const Menu = () => {
 					<MenuItem onClick={() => changeLanguage('de')}>DE</MenuItem>
 					<MenuItem onClick={() => changeLanguage('fr')}>FR</MenuItem>
 				</ReactMenu>
-				<IconButton size="medium" className="header__menu-actions-icon ml-12">
-					<div className="mx-12">CHF</div>
+				<IconButton size="medium" className="header__menu-actions-icon">
+					<div>CHF</div>
 				</IconButton>
-
+				<div className="header__menu-actions-icon-user">
+					{user.Username || 'Guest'}
+				</div>
 				<a
 					href="https://fashioncare.ch/Account/Login"
 					className="header__menu-actions-icon"
 				>
 					<AccountCircleOutlined fontSize="large" classes={{root: 'm-auto'}} />
 				</a>
-				<Badge badgeContent={cartQuantity} color="primary">
+				<Badge
+					badgeContent={cartQuantity}
+					color="primary"
+					className="header__menu-actions-icon"
+				>
 					<a
-						href="https://fashioncare.ch/Shop/CheckoutProducts"
 						className="header__menu-actions-icon"
+						href="https://fashioncare.ch/Shop/CheckoutProducts"
 					>
 						<ShoppingBasketOutlined
 							fontSize="large"

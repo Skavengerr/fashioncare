@@ -74,7 +74,7 @@
 			width: 33.3%;
 			display: flex;
 			color: #fff;
-			justify-content: flex-end;
+			justify-content: space-between;
 			align-items: center;
 			font-family: 'Montserrat';
 			font-style: normal;
@@ -85,9 +85,19 @@
 			&-icon {
 				display: flex;
 				color: #fff !important;
-				width: 60px !important;
 				padding: 0 !important;
-				margin-left: 1rem;
+				width: 16.6%;
+				text-align: center;
+				margin: auto;
+
+				&-user {
+					color: #fff !important;
+					padding: 0 !important;
+					width: 16.6%;
+					text-align: center;
+					margin: auto;
+					font-size: 20px;
+				}
 			}
 
 			button {
@@ -183,4 +193,8 @@
 .rc-menu-button {
 	border: none !important;
 	background: transparent !important;
+}
+
+.text-white {
+	color: #fff !important;
 }
