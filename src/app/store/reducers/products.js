@@ -9,7 +9,7 @@ const initialState = {
 	alsoLikeProducts: [],
 	product: {},
 	cartQuantity: 0,
-	region: 'EU',
+	region: 'CH',
 	user: null
 };
 

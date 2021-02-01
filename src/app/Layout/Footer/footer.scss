@@ -12,7 +12,7 @@
 	}
 
 	&__info {
-		padding: 2rem 0;
+		padding: 2rem;
 		background: #d6baa4;
 		display: flex;
 		justify-content: space-around;
@@ -125,5 +125,10 @@
 }
 @media screen and (max-width: 700px) {
 	.footer {
+		&__info {
+			&-left {
+				flex-wrap: wrap;
+			}
+		}
 	}
 }

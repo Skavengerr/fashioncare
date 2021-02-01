@@ -1,7 +1,9 @@
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './locales/en/main.json';
 import de from './locales/de/main.json';
+import fr from './locales/fr/main.json';
 
 const options = {
 	interpolation: {
@@ -13,9 +15,9 @@ const options = {
 	// set default language
 	lng: 'de',
 
-	whitelist: ['en', 'de'],
+	whitelist: ['en', 'de', 'fr'],
 
-	resources: {en, de},
+	resources: {en, de, fr},
 
 	fallbackLng: 'en',
 
@@ -31,6 +33,6 @@ const options = {
 	}
 };
 
-i18n.use(initReactI18next).init(options);
+i18n.use(LanguageDetector).use(initReactI18next).init(options);
 
 export default i18n;

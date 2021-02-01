@@ -15,7 +15,7 @@ const Instagram = () => {
 		<div className="inst">
 			<div className="inst__box">
 				<LazyLoad once>
-					<img alt="" src="/icons/home/followus.jpg" />
+					<img className="inst__photo" alt="" src="/icons/home/followus.jpg" />
 				</LazyLoad>
 			</div>
 			<LazyLoad once>

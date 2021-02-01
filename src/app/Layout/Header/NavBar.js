@@ -97,21 +97,21 @@ const NavBar = () => {
 								isOpen={isOpen}
 								onClose={() => setOpen(false)}
 							>
-								<SubMenu label="Men">
+								<SubMenu label={t('men')}>
 									<MenuItem
 										onClick={() => filterByCategoryAndClass(7, 1)}
 									>
 										{t('jackets')}
 									</MenuItem>
 								</SubMenu>
-								<SubMenu label="Women">
+								<SubMenu label={t('women')}>
 									<MenuItem
 										onClick={() => filterByCategoryAndClass(7, 2)}
 									>
 										{t('jackets')}
 									</MenuItem>
 								</SubMenu>
-								<SubMenu label="Kids">
+								<SubMenu label={t('kids')}>
 									{PRODUCT_CLASSES.map(el => (
 										<MenuItem
 											key={el.id}
