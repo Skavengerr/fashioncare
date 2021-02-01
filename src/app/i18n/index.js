@@ -4,6 +4,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './locales/en/main.json';
 import de from './locales/de/main.json';
 import fr from './locales/fr/main.json';
+import ita from './locales/ita/main.json';
 
 const options = {
 	interpolation: {
@@ -15,9 +16,9 @@ const options = {
 	// set default language
 	lng: 'en',
 
-	whitelist: ['en', 'de', 'fr'],
+	whitelist: ['en', 'de', 'fr', 'ita'],
 
-	resources: {en, de, fr},
+	resources: {en, de, fr, ita},
 
 	fallbackLng: 'en',
 

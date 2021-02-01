@@ -71,6 +71,7 @@ const Menu = () => {
 					<MenuItem onClick={() => changeLanguage('en')}>ENG</MenuItem>
 					<MenuItem onClick={() => changeLanguage('de')}>DE</MenuItem>
 					<MenuItem onClick={() => changeLanguage('fr')}>FR</MenuItem>
+					<MenuItem onClick={() => changeLanguage('ita')}>ITA</MenuItem>
 				</ReactMenu>
 				<IconButton size="medium" className="header__menu-actions-icon">
 					<div>CHF</div>

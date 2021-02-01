@@ -20,17 +20,17 @@ const Home = () => {
 				<div className="home__main">
 					<div className="home__main-top">
 						<Hidden mdDown>
-							{category_id === 1 ? (
+							{category_id === 3 ? (
 								<img
 									alt=""
 									className="home-img"
-									src="/icons/home/welcome_2.jpg"
+									src="/icons/home/welcome.jpg"
 								/>
 							) : (
 								<img
 									className="home-img"
 									alt=""
-									src="/icons/home/welcome.jpg"
+									src="/icons/home/welcome_2.jpg"
 								/>
 							)}
 						</Hidden>
