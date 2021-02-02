@@ -12,9 +12,7 @@ export const PRODUCT_CLASSES = [
 	{id: 14, title: 'ponchos'},
 	{id: 15, title: 'sleeping-bags'},
 	{id: 2, title: 'blankets'},
-	{id: 12, title: 'beanies'},
-	{id: 6, title: 'underwear'},
-	{id: 13, title: 'cosmetics'}
+	{id: 12, title: 'beanies'}
 ];
 
 export const BRANDS = [

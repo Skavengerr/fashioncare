@@ -4,7 +4,6 @@ import {useTranslation} from 'react-i18next';
 import '@szhsin/react-menu/dist/index.css';
 import {Hidden} from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux';
-import SearchIcon from '@material-ui/icons/Search';
 import {useHistory} from 'react-router-dom';
 
 import * as Actions from '../../store/actions/products';
@@ -19,7 +18,6 @@ const NavBar = () => {
 	const brandRef = useRef(null);
 	const [isOpen, setOpen] = useState(false);
 	const [brandIsOpen, setBrandOpen] = useState(false);
-	const value = useRef(null);
 	const {category_id} = useSelector(state => state);
 
 	const filterByCategoryAndClass = (classId, categoryId) => {
@@ -47,23 +45,13 @@ const NavBar = () => {
 		setBrandOpen(false);
 	};
 
-	const toggleSearch = () => {
-		dispatch(Actions.searchByValue(value.current.value));
-		value.current.value = '';
-	};
-
-	const toggleSearchEnter = e => {
-		console.log('🚀 ~ file: NavBar.js ~ line 56 ~ NavBar ~ e', e);
-		if (e.code === 'Enter') {
-			dispatch(Actions.searchByValue(value.current.value));
-			value.current.value = '';
-		}
-	};
-
 	return (
 		<>
 			<div>
-				<div className="nav" onMouseLeave={closeMenus}>
+				<div
+					className={`nav ${category_id === 3 ? 'h-100' : ''}`}
+					onMouseLeave={closeMenus}
+				>
 					<Hidden lgUp>
 						<div className="header__nav">
 							<img
@@ -157,52 +145,19 @@ const NavBar = () => {
 							</ControlledMenu>
 						</>
 						<p onClick={() => onFilterByClass(7)}>{t('jackets')}</p>
-						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(11)}>{t('bodies')}</p>
-						)}
-						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(1)}>{t('tops')}</p>
-						)}
-						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(5)}>{t('dresses')}</p>
-						)}
-						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(4)}>{t('shorts')}</p>
-						)}
-						{category_id > 2 && (
-							<p onClick={() => onFilterByClass(9)}>{t('leggins')}</p>
-						)}
+
+						{category_id > 2 &&
+							PRODUCT_CLASSES.map(el => (
+								<p onClick={() => onFilterByClass(el.id)}>
+									{t(el.title)}
+								</p>
+							))}
 						<Hidden lgUp>
 							<p>{t('delivery')}</p>
 							<p>{t('submit-return')}</p>
 							<p>{t('packaging')}</p>
 							<p>{t('contact-us')}</p>
 							<p>{t('faq')}</p>
-						</Hidden>
-						<Hidden mdDown className="ml-20">
-							<div className="flex">
-								<input
-									style={{
-										height: 23,
-										minWidth: 200
-									}}
-									type="text"
-									placeholder={t('search-field')}
-									onKeyUp={toggleSearchEnter}
-									ref={value}
-								/>
-
-								<button
-									style={{
-										background: '#2796FF',
-										border: 'none',
-										cursor: 'pointer'
-									}}
-									onClick={toggleSearch}
-								>
-									<SearchIcon style={{color: '#fff'}} />
-								</button>
-							</div>
 						</Hidden>
 					</div>
 				</div>

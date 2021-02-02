@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 
 import {Hidden, Badge, IconButton} from '@material-ui/core';
-import {AccountCircleOutlined, ShoppingBasketOutlined, Public} from '@material-ui/icons';
+import {
+	AccountCircleOutlined,
+	ShoppingBasketOutlined,
+	Public,
+	Search
+} from '@material-ui/icons';
 import {Menu as ReactMenu, MenuItem, MenuButton} from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/index.css';
 
@@ -19,8 +24,11 @@ const CATEGORIES = [
 const Menu = () => {
 	const {t, i18n} = useTranslation('main');
 	const history = useHistory();
+	const value = useRef(null);
 	const dispatch = useDispatch();
-	const {category_id, region, cartQuantity, user} = useSelector(state => state);
+	const {category_id, region, cartQuantity, user, searchError} = useSelector(
+		state => state
+	);
 
 	const changeCategory = id => {
 		history.push('/home/index2');
@@ -31,13 +39,57 @@ const Menu = () => {
 		i18n.changeLanguage(lng);
 	};
 
+	const toggleSearch = () => {
+		dispatch(Actions.searchByValue(value.current.value));
+		value.current.value = '';
+	};
+
+	const toggleSearchEnter = e => {
+		if (e.code === 'Enter') {
+			dispatch(Actions.searchByValue(value.current.value));
+			value.current.value = '';
+		}
+	};
+
 	return (
 		<div className="header__menu">
-			<Hidden mdDown>
-				<Link to="/home/index2" className="header__menu-image">
-					<img alt="" src="/icons/header/header.svg" />
-				</Link>
-			</Hidden>
+			<div className="header__menu-image">
+				<Hidden mdDown>
+					<Link to="/home/index2">
+						<img alt="" className="w-full" src="/icons/header/header.svg" />
+					</Link>
+				</Hidden>
+				<div className="header__menu-input">
+					<div className="header__menu-image-input">
+						<input
+							style={{
+								height: 23,
+								minWidth: 200
+							}}
+							type="text"
+							placeholder={t('search-field')}
+							onKeyUp={toggleSearchEnter}
+							ref={value}
+						/>
+
+						<button
+							style={{
+								background: '#2796FF',
+								border: 'none',
+								cursor: 'pointer'
+							}}
+							onClick={toggleSearch}
+						>
+							<Search style={{color: '#fff'}} />
+						</button>
+					</div>
+					{searchError && (
+						<p className="header__menu-input-error">
+							No products with this name were found
+						</p>
+					)}
+				</div>
+			</div>
 
 			<div className="header__menu-buttons">
 				{CATEGORIES.map(el => (

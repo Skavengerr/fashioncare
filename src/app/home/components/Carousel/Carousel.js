@@ -10,8 +10,8 @@ const breakPoints = [
 	{width: 1, itemsToShow: 1},
 	{width: 550, itemsToShow: 2},
 	{width: 700, itemsToShow: 3},
-	{width: 1000, itemsToShow: 4},
-	{width: 1100, itemsToShow: 5}
+	{width: 1100, itemsToShow: 4},
+	{width: 1300, itemsToShow: 5}
 ];
 
 const myArrow = ({type, onClick, isEdge}) => {

@@ -91,7 +91,8 @@ export function searchByValue(id) {
 		productService.searchByValue(id).then(res => {
 			return dispatch({
 				type: SEARCH_BY_VALUE,
-				payload: res.data.Products
+				payload: res.data.Products,
+				error: res.data.Products.length
 			});
 		});
 }

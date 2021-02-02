@@ -66,8 +66,21 @@
 
 		&-buttons {
 			align-self: flex-end;
-			width: 33.3%;
+			width: 50%;
+			display: flex;
+			justify-content: flex-start;
 			text-align: center;
+		}
+
+		&-input {
+			margin-left: 2rem;
+			&-error {
+				color: red;
+				transition: color 500ms linear;
+
+				font-size: 12px;
+				margin: 0;
+			}
 		}
 
 		&-actions {
@@ -109,7 +122,14 @@
 		}
 
 		&-image {
-			width: 33.3%;
+			width: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+
+			&-input {
+				display: flex;
+			}
 		}
 	}
 	&__top {
@@ -179,12 +199,21 @@
 		&__menu {
 			padding: 0.5rem;
 			flex-direction: column-reverse;
+			&-input {
+				margin-left: 0;
+			}
+			&-image {
+				width: 100%;
+				justify-content: center;
+				margin-top: 1rem;
+			}
 			&-actions {
 				width: 100%;
 				justify-content: center;
 			}
 			&-buttons {
 				width: 100%;
+				justify-content: center;
 			}
 		}
 	}

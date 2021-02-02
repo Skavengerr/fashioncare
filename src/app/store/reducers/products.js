@@ -10,6 +10,7 @@ const initialState = {
 	product: {},
 	cartQuantity: 0,
 	region: 'CH',
+	searchError: false,
 	user: null
 };
 
@@ -35,23 +36,9 @@ const Products = function (state = initialState, action) {
 		case Actions.SEARCH_BY_VALUE: {
 			return {
 				...state,
-				category_id: action.payload[0].CategoryId,
-				products: action.payload.filter(
-					p =>
-						p.CategoryId === action.payload[0].CategoryId &&
-						(state.class_id
-							? p.ProductClassId === state.class_id
-							: p.ProductClassId > 0)
-				),
-				winterProducts: action.payload.filter(
-					p =>
-						p.SeasonId === 1 &&
-						p.CategoryId === state.category_id &&
-						(state.class_id
-							? p.ProductClassId === state.class_id
-							: p.ProductClassId > 0)
-				),
-				alsoLikeProducts: action.payload
+				category_id: 0,
+				products: action.payload,
+				searchError: action.payload.length ? false : true
 			};
 		}
 		case Actions.PRODUCT_GET_BY_ID: {
@@ -60,7 +47,8 @@ const Products = function (state = initialState, action) {
 				product: action.payload,
 				alsoLikeProducts: state.otherProducts.filter(
 					p => p.CategoryId === state.category_id
-				)
+				),
+				searchError: false
 			};
 		}
 		case Actions.FILTER_BY_CATEGORY: {
@@ -72,31 +60,22 @@ const Products = function (state = initialState, action) {
 				),
 				winterProducts: state.otherProducts.filter(
 					p => p.CategoryId === action.payload.id && p.SeasonId === 1
-				)
+				),
+				searchError: false
 			};
 		}
 		case Actions.FILTER_BY_BRAND: {
 			return {
 				...state,
 				brand_id: action.payload.id,
+				category_id: 0,
 				products: state.otherProducts.filter(
-					p =>
-						p.CategoryId === state.category_id &&
-						p.BrandId === action.payload.id &&
-						(state.class_id
-							? p.ProductClassId === state.class_id
-							: p.ProductClassId > 0)
+					p => p.BrandId === action.payload.id
 				),
 				winterProducts: state.otherProducts.filter(
-					p =>
-						p.CategoryId === state.category_id &&
-						p.BrandId === action.payload.id &&
-						p.SeasonId === 1 &&
-						(state.class_id
-							? p.ProductClassId === state.class_id
-							: p.ProductClassId > 0) &&
-						p.BrandId === action.payload.id
-				)
+					p => p.BrandId === action.payload.id && p.SeasonId === 1
+				),
+				searchError: false
 			};
 		}
 		case Actions.FILTER_BY_CLASS: {
@@ -113,7 +92,8 @@ const Products = function (state = initialState, action) {
 						p.ProductClassId === action.payload.id &&
 						p.SeasonId === 1 &&
 						p.CategoryId === state.category_id
-				)
+				),
+				searchError: false
 			};
 		}
 		case Actions.FILTER_BY_CATEGORY_AND_CLASS: {
@@ -131,7 +111,8 @@ const Products = function (state = initialState, action) {
 						p.ProductClassId === action.payload.classId &&
 						p.SeasonId === 1 &&
 						p.CategoryId === action.payload.categoryId
-				)
+				),
+				searchError: false
 			};
 		}
 		case Actions.CLEAR_FILTER_BY_CATEGORY: {
@@ -143,7 +124,8 @@ const Products = function (state = initialState, action) {
 				),
 				winterProducts: state.otherProducts.filter(
 					p => p.CategoryId === state.category_id && p.SeasonId === 1
-				)
+				),
+				searchError: false
 			};
 		}
 		case Actions.ADD_TO_CART: {
