@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import {TextField} from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 
 import igi from './igi.mp4';
 import Card from '../../../home/components/Card';
@@ -10,6 +11,7 @@ import * as Actions from '../../../store/actions/products';
 import './otherProducts.scss';
 
 const OtherProducts = () => {
+	const {t} = useTranslation('main');
 	const {alsoLikeProducts, category_id} = useSelector(state => state);
 	const dispatch = useDispatch();
 	const email = useRef();
@@ -84,6 +86,7 @@ const OtherProducts = () => {
 						/>
 						<button type="submit">Send</button>
 					</form>
+					<p className="footer__info-right-text">{t('sign-up-catalog')}</p>
 					<Social other />
 				</div>
 			</div>
