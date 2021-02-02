@@ -2,6 +2,7 @@ import React from 'react';
 import {Typography} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 import ElasticCarousel, {consts} from 'react-elastic-carousel';
+import {useTranslation} from 'react-i18next';
 
 import './popular.scss';
 
@@ -25,13 +26,14 @@ const myArrow = ({type, onClick, isEdge}) => {
 };
 
 const Popular = () => {
+	const {t} = useTranslation('main');
 	const {products, winterProducts} = useSelector(state => state);
 	if (!products) return null;
 	return (
 		<>
 			{products.length ? (
 				<>
-					<Typography variant="h4">Popular</Typography>
+					<Typography variant="h4">{t('popular')}</Typography>
 					<ElasticCarousel
 						renderArrow={myArrow}
 						breakPoints={breakPoints}
@@ -53,9 +55,7 @@ const Popular = () => {
 			) : null}
 			{winterProducts.length ? (
 				<>
-					<Typography variant="h4">
-						{winterProducts ? 'Winter' : 'Summer'}
-					</Typography>
+					<Typography variant="h4">{t('winter')}</Typography>
 
 					<ElasticCarousel
 						renderArrow={myArrow}

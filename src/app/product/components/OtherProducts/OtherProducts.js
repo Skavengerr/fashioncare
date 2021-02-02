@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import {TextField} from '@material-ui/core';
 import {useDispatch, useSelector} from 'react-redux';
 
+import igi from './igi.mp4';
 import Card from '../../../home/components/Card';
 import {Social} from '../../../Layout/Header/TopHeader';
 import * as Actions from '../../../store/actions/products';
@@ -56,16 +57,18 @@ const OtherProducts = () => {
 				))}
 			</div>
 			<div className="other__video">
-				<iframe
-					title="New sustainable brand"
-					src={
-						category_id === 3
-							? 'https://www.youtube.com/embed/QLEaSOTrGQk'
-							: 'https://www.youtube.com/embed/-WFXo43ks7c'
-					}
-					allowFullScreen
-					frameBorder="0"
-				/>
+				{category_id === 3 ? (
+					<video className="videoTag" controls>
+						<source src={igi} type="video/mp4" />
+					</video>
+				) : (
+					<iframe
+						title="New sustainable brand"
+						src="https://www.youtube.com/embed/-WFXo43ks7c"
+						allowFullScreen
+						frameBorder="0"
+					/>
+				)}
 			</div>
 			<div className="flex m-auto">
 				<div className="other__email-wrap">

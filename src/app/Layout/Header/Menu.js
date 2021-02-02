@@ -77,7 +77,7 @@ const Menu = () => {
 					<div>CHF</div>
 				</IconButton>
 				<div className="header__menu-actions-icon-user">
-					{user.Username || 'Guest'}
+					{user && user.Username ? user.Username : 'Guest'}
 				</div>
 				<a
 					href="https://fashioncare.ch/Account/Login"

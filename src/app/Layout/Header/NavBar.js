@@ -52,6 +52,14 @@ const NavBar = () => {
 		value.current.value = '';
 	};
 
+	const toggleSearchEnter = e => {
+		console.log('🚀 ~ file: NavBar.js ~ line 56 ~ NavBar ~ e', e);
+		if (e.code === 'Enter') {
+			dispatch(Actions.searchByValue(value.current.value));
+			value.current.value = '';
+		}
+	};
+
 	return (
 		<>
 			<div>
@@ -179,7 +187,8 @@ const NavBar = () => {
 										minWidth: 200
 									}}
 									type="text"
-									placeholder="Search..."
+									placeholder={t('search-field')}
+									onKeyUp={toggleSearchEnter}
 									ref={value}
 								/>
 
