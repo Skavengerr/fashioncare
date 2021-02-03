@@ -21,6 +21,7 @@ const ProductDetail = () => {
 	const [isValidSize, setValidSize] = useState(true);
 	const [product, setProduct] = useState({...Product, quantity: 0, size: ''});
 
+	let sizes = Product.Size.split(',');
 	const onIncrement = () => {
 		setValidQuantity(true);
 		if (product.quantity <= Product.StockAmount) {
@@ -132,7 +133,7 @@ const ProductDetail = () => {
 					</div>
 				</div>
 				<div className="productInfo__details">
-					<div className="title-4">
+					<div className="title-4-color">
 						{t('color')}: <span>{Product.Color}</span>
 						<div className="productInfo__details-size">
 							<button>{Product.Color}</button>
@@ -141,13 +142,25 @@ const ProductDetail = () => {
 					<div className={!isValidSize ? 'title-4 title-4-error' : 'title-4'}>
 						{t('size')}:<span>{product.size}</span>
 						<div className="productInfo__details-size">
-							<button onClick={() => onChangeSize('S')}>S</button>
-							<button onClick={() => onChangeSize('M')}>M</button>
-							<button onClick={() => onChangeSize('L')}>L</button>
+							{sizes.length ? (
+								sizes.map(s => (
+									<button onClick={() => onChangeSize(s.trim())}>
+										{s.trim()}
+									</button>
+								))
+							) : (
+								<>
+									<button onClick={() => onChangeSize('S')}>S</button>
+									<button onClick={() => onChangeSize('M')}>M</button>
+									<button onClick={() => onChangeSize('L')}>L</button>
+								</>
+							)}
 						</div>
 					</div>
 					<div
-						className={!isValidQuantity ? 'title-4 title-4-error' : 'title-4'}
+						className={
+							!isValidQuantity ? 'title-4-color-error' : 'title-4-color'
+						}
 					>
 						{t('quantity')}:
 						<div className="productInfo__details-size">
