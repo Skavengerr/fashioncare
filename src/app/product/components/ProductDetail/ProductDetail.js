@@ -15,13 +15,18 @@ const ProductDetail = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const {Product} = useSelector(state => state.product);
+	let sizes;
+	if (Product && Product.Size) sizes = Product.Size.split(',');
 	const user = useSelector(state => state.user);
 	const [selectedIndex] = useState();
 	const [isValidQuantity, setValidQuantity] = useState(true);
 	const [isValidSize, setValidSize] = useState(true);
-	const [product, setProduct] = useState({...Product, quantity: 0, size: ''});
+	const [product, setProduct] = useState({
+		...Product,
+		quantity: 1,
+		size: sizes ? sizes[0] : 'S'
+	});
 
-	let sizes = Product.Size.split(',');
 	const onIncrement = () => {
 		setValidQuantity(true);
 		if (product.quantity <= Product.StockAmount) {
@@ -60,7 +65,7 @@ const ProductDetail = () => {
 			setValidSize(false);
 		} else if (product.quantity <= Product.StockAmount) {
 			dispatch(Actions.addToCart(product));
-			setProduct({...product, quantity: 0});
+			setProduct({...product, quantity: 1});
 			sessionStorage.setItem('UserID', user.UserId || 1);
 			sessionStorage.setItem('Username', user.Username || 'User');
 			sessionStorage.setItem('UserRole', user.UserRole || 'UserRole');
@@ -142,7 +147,7 @@ const ProductDetail = () => {
 					<div className={!isValidSize ? 'title-4 title-4-error' : 'title-4'}>
 						{t('size')}:<span>{product.size}</span>
 						<div className="productInfo__details-size">
-							{sizes.length ? (
+							{sizes && sizes.length ? (
 								sizes.map(s => (
 									<button onClick={() => onChangeSize(s.trim())}>
 										{s.trim()}
